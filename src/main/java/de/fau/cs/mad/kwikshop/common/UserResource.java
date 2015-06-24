@@ -17,12 +17,12 @@ public interface UserResource {
     @POST
     @Path("/auth")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     @ApiOperation(
             value = "Authenticate user via third-party login (e.g. Google)",
             notes = "Returns this user's session token",
             response = Response.class)
-    Response auth(@FormParam("token") String token);
+    String auth(@FormParam("token") String token);
 
     /*@GET
     @Path("/{id}")
