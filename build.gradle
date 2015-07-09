@@ -21,6 +21,9 @@ dependencies {
     compile 'io.dropwizard:dropwizard-hibernate:' + dropwizardVersion
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.wordnik:swagger-jersey2-jaxrs:1.5.0-M2'
+
+
+    compile 'com.j256.ormlite:ormlite-core:4.48'
 }
 
 compileJava {
@@ -31,6 +34,7 @@ compileJava {
 sourceSets {
     main {
         java {
+            srcDir 'src/main/java'
             srcDir 'src/main/java-gen'
         }
     }
