@@ -11,16 +11,20 @@ public class LastLocation {
     private int id;
 
     @DatabaseField
-    private double latitude;
+    private double latitude = 0.0;
 
     @DatabaseField
-    private double longitude;
+    private double longitude = 0.0;
 
     @DatabaseField
-    private String Address;
+    private String address;
 
     @DatabaseField
-    private boolean visited;
+    private String name;
+
+    @DatabaseField
+    private long timestamp;
+
 
     public double getLatitude() {
         return latitude;
@@ -38,19 +42,24 @@ public class LastLocation {
         this.longitude = longitude;
     }
 
-    public String getAddress() {
-        return Address;
+    public String getAddress() {return address; }
+
+    public void setAddress(String address) { this.address = address; }
+
+
+    public long getTimestamp() {
+        return timestamp;
     }
 
-    public void setAddress(String address) {
-        Address = address;
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public boolean isVisited() {
-        return visited;
+    public String getName() {
+        return name;
     }
 
-    public void setVisited(boolean visited) {
-        this.visited = visited;
+    public void setName(String name) {
+        this.name = name;
     }
 }
