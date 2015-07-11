@@ -11,29 +11,63 @@ import java.util.*;
 
 import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObject;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-@Entity
+
+//Hibernate
+@Entity(name ="Recipe")
+//ORMLite
 @DatabaseTable (tableName = "recipe")
 public class Recipe implements DomainListObject {
 
+    //Hibernate
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    //ORMLite
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField
+    //Hibernate
+    @Column(name = "name", nullable = false)
+    //ORMLite
+    @DatabaseField(canBeNull = false)
     private String name;
 
+    //Hibernate
+    @OneToMany
+    @JoinColumn(name = "itemId")
+    //ORMLite
     @ForeignCollectionField(eager = true)
     private ForeignCollection<Item> items;
 
+    //Hibernate
+    @Column(name = "scaleFactor")
+    //ORMLite
     @DatabaseField
     private int scaleFactor = 1;
 
+    //Hibernate
+    @Column(name = "scaleName")
+    //ORMLite
     @DatabaseField
     private String scaleName;
 
+    //Hibernate
+    @Column(name = "lastModifiedDate")
+    //ORMLite
     @DatabaseField (canBeNull = true)
     private Date lastModifiedDate;
+
+    /**
+     * Id of the user that owns this list (server side)
+     */
+    //Hibernate
+    @ManyToOne
+    @JoinColumn(name="userId")
+    //ORMLite
+    // not stored on client side
+    private User owner;
 
 
     public Recipe(int id) {

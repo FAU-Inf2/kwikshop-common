@@ -4,27 +4,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-@Entity
+//Hibernate
+@Entity(name = "Location")
+//ORMLite
 @DatabaseTable(tableName = "location")
 public class LastLocation {
 
+    //Hibernate
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    //ORMLite
     @DatabaseField(generatedId = true)
     private int id;
 
+    //Hibernate
+    @Column(name = "latitude")
+    //ORMLite
     @DatabaseField
     private double latitude = 0.0;
 
+    //Hibernate
+    @Column(name = "longitude")
+    //ORMLite
     @DatabaseField
     private double longitude = 0.0;
 
+    //Hibernate
+    @Column(name = "address")
+    //ORMLite
     @DatabaseField
     private String address;
 
+    //Hibernate
+    @Column(name = "name")
+    //ORMLite
     @DatabaseField
     private String name;
 
+    //Hibernate
+    @Column(name = "timestamp")
+    //ORMLite
     @DatabaseField
     private long timestamp;
 

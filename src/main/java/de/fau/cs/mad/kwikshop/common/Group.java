@@ -5,18 +5,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
-@Entity
+
+//Hibernate
+@Entity(name = "Group")
+//ORMLite
 @DatabaseTable(tableName = "group")
 public class Group {
 
+  //Hibernate
+  @Id
+  @GeneratedValue
+  @Column(name = "id")
+  //ORMLite
   @DatabaseField(generatedId = true)
   private int id;
 
+  //Hibernate
+  @Column(name = "name")
+  //ORMLite
   @DatabaseField(canBeNull = false)
   private String name;
 
+  //Hibernate : currently not mapped => localization of items needs to be refactored first so it supports both server and client
+  //ORMLite
   @DatabaseField(canBeNull = true)
   private String displayNameResourceName;
 

@@ -5,22 +5,45 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import javax.persistence.*;
+
+//Hibernate
+@Entity(name = "Unit")
+//ORMLite
 @DatabaseTable(tableName = "unit")
 public class Unit {
 
+  //Hibernate
+  @Id
+  @GeneratedValue
+  @Column(name = "id")
+  //ORMLite
   @DatabaseField(generatedId = true)
   private int id;
 
+  /**
+   * Language-neutral name of the unit (= english)
+   */
+  //Hibernate
+  @Column(name = "name", nullable = false)
+  //ORMLite
   @DatabaseField(canBeNull = false)
-  //language-neutral name of the unit (= english)
   private String name;
 
+  /**
+   * The name of the string resource for the localized name of the unit
+   */
+  //Hibernate : currently not mapped => localization of items needs to be refactored first so it supports both server and client
+  //ORMLite
   @DatabaseField(canBeNull = true)
-  // the name of the string resource for the localized name of the unit
   private String displayNameResourceName;
 
+  /**
+   * The name of the string resource for the localized short name of the unit
+   */
+  //Hibernate : currently not mapped => localization of items needs to be refactored first so it supports both server and client
+  //ORMLite
   @DatabaseField(canBeNull = true)
-  //the name of the string resource for the localized short name of the unit
   private String shortDisplayNameResourceName;
 
 

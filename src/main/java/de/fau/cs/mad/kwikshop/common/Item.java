@@ -5,76 +5,145 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+
+//Hibernate annotations (server side)
+@Entity(name = "Item")
+//ORMLite annotations (android client)
 @DatabaseTable(tableName = "item")
 public class Item {
 
     public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";
     public static final String FOREIGN_RECIPE_FIELD_NAME = "recipe";
 
-
+    //Hibernate
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    //ORMLite
     @DatabaseField(generatedId = true)
     private int id;
 
-    // Order of this Item in the ShoppingList
+    /**
+     * Order of this Item in the ShoppingList
+     */
+    //Hibernate
+    @Column(name="order")
+    //ORMLite
     @DatabaseField
     private int order = -1;
 
+    //Hibernate
+    @Column(name="isBought")
+    //ORMLite
     @DatabaseField
     private Boolean bought = false;
 
+    //Hibernate
+    @Column(name = "name")
+    //ORMLite
     @DatabaseField(canBeNull = false)
     private String name = "";
 
+    //Hibernate
+    @Column(name = "amount")
+    //ORMLite
     @DatabaseField
     private int amount = 1;
 
+    //Hibernate
+    @Column(name = "isHighlighted")
+    //ORMLite
     @DatabaseField
     private Boolean highlight = false;
 
+    //Hibernate
+    @Column(name ="brand")
+    //ORMLite
     @DatabaseField(canBeNull = true)
     private String brand;
 
+    //Hibernate
+    @Column(name="comment")
+    //ORMLite
     @DatabaseField(canBeNull = true)
     private String comment;
 
+    //Hibernate
+    @ManyToOne
+    @JoinColumn(name = "groupId")
+    //ORMLite
     @DatabaseField(foreign = true)
     private Group group;
 
+    //Hibernate
+    @ManyToOne
+    @JoinColumn(name = "unitId")
+    //ORMLite
     @DatabaseField(foreign = true)
     private Unit unit;
 
     /**
-     * the ShoppingList, that contains this Item.
+     * The ShoppingList, that contains this Item.
      * (Required for ORMLite)
      */
+    //Hibernate: not mapped
+    //ORMLite
     @DatabaseField(foreign = true, columnName = FOREIGN_SHOPPINGLIST_FIELD_NAME)
     private ShoppingList shoppingList;
 
+    /**
+     * The Recipe, that contains this Item.
+     * (Required for ORMLite)
+     */
+    //Hibernate: not mapped
+    //ORMLite
     @DatabaseField(foreign = true, columnName = FOREIGN_RECIPE_FIELD_NAME)
     private Recipe recipe;
 
+    //Hibernate
+    @Column(name = "lastBought")
+    //ORMLite
     @DatabaseField(canBeNull = true)
     private Date lastBought;
 
+    //Hibernate
+    @Column(name = "isRegularlyRepeatedItem")
+    //ORMLite
     @DatabaseField
     private boolean regularlyRepeatItem;
 
+    //Hibernate
+    @Column(name = "repeatType")
+    @Enumerated(EnumType.ORDINAL)
+    //ORMLite
     @DatabaseField
     private TimePeriodsEnum periodType;
 
+    //Hibernate
+    @Column(name ="selectedRepeatTime")
+    //ORMLite
     @DatabaseField
     private int selectedRepeatTime;
 
+    //Hibernate
+    @Column(name = "remindFromNextPurchaseOn")
+    //ORMLite
     @DatabaseField
     private boolean remindFromNextPurchaseOn;
 
+    //Hibernate
+    @Column(name = "remindAtDate")
+    //ORMLite
     @DatabaseField(canBeNull = true)
     private Date remindAtDate;
 
+    //Hibernate
+    @ManyToOne
+    @JoinColumn(name = "locationId")
+    //ORMLite
     @DatabaseField(foreign = true, canBeNull = true)
     private LastLocation location;
 
