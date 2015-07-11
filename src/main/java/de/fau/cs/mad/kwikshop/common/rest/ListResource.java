@@ -3,6 +3,8 @@ package de.fau.cs.mad.kwikshop.common.rest;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 import de.fau.cs.mad.kwikshop.common.Item;
+import de.fau.cs.mad.kwikshop.common.User;
+import io.dropwizard.auth.Auth;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -13,25 +15,43 @@ public interface ListResource<TList> {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    List<TList> getList();
+    List<TList> getList(@Auth User user);
 
     @GET
     @Path("{listId}")
-    TList getList(@PathParam("listId") int id);
+    TList getList(@Auth User user, @PathParam("listId") int listId);
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    TList createList(@Auth User user, TList list);
+
+    @POST
+    @Path("{listId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    TList updateList(@Auth User user, @PathParam("listId") int listId, TList list, @QueryParam("updateItems") boolean updateItems);
+
+    @DELETE
+    @Path("{listId}")
+    void deleteList(@Auth User user, @PathParam("listId") int listId);
 
     @GET
     @Path("{listId}/{itemId}")
-    List<Item> getListItem(@PathParam("listId") int listId, @PathParam("itemId") int itemId);
+    Item getListItem(@Auth User user, @PathParam("listId") int listId, @PathParam("itemId") int itemId);
 
 
     @POST
+    @Path("{listId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
             value = "Create a new Item",
             notes = "Inserts a new Item into the database. Returns the new Item object including id.",
             response = Item.class)
-    Item createItem(@ApiParam(value = "Item to create", required = true)Item newItem);
+    Item createItem(@Auth User user,
+                    @PathParam("listId") int listId,
+                    @ApiParam(value = "Item to create", required = true)Item newItem);
 
     @PUT
     @Path("{listId}/{itemId}")
@@ -42,8 +62,9 @@ public interface ListResource<TList> {
             notes = "Updates the details of an existing item. Returns the updated Item object.",
             response = Item.class)
     Item updateItem(
-            @ApiParam(value ="id of the list the item belongs to", required = true) @PathParam("listId") long listId,
-            @ApiParam(value = "id of the Item to update", required = true) @PathParam("itemId") long itemId,
+            @Auth User user,
+            @ApiParam(value ="id of the list the item belongs to", required = true) @PathParam("listId") int listId,
+            @ApiParam(value = "id of the Item to update", required = true) @PathParam("itemId") int itemId,
             @ApiParam(value = "new details of the specified item", required = true) Item item);
 
     @DELETE
@@ -54,8 +75,9 @@ public interface ListResource<TList> {
             value = "Delete an Item",
             notes = "Removes a Item from the database.",
             response = Item.class)
-    void deleteUser(
-            @ApiParam(value ="id of the list the item belongs to", required = true) @PathParam("listId") long listId,
-            @ApiParam(value = "id of the Item to update", required = true) @PathParam("itemId") long itemId);
+    void deleteListItem(
+            @Auth User user,
+            @ApiParam(value ="id of the list the item belongs to", required = true) @PathParam("listId") int listId,
+            @ApiParam(value = "id of the Item to update", required = true) @PathParam("itemId") int itemId);
 
 }

@@ -72,14 +72,14 @@ public class Item {
     private String comment;
 
     //Hibernate
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     @JoinColumn(name = "groupId")
     //ORMLite
     @DatabaseField(foreign = true)
     private Group group;
 
     //Hibernate
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     @JoinColumn(name = "unitId")
     //ORMLite
     @DatabaseField(foreign = true)
@@ -141,7 +141,7 @@ public class Item {
     private Date remindAtDate;
 
     //Hibernate
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     @JoinColumn(name = "locationId")
     //ORMLite
     @DatabaseField(foreign = true, canBeNull = true)
