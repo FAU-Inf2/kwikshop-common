@@ -24,6 +24,7 @@ dependencies {
 
 
     compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'io.dropwizard:dropwizard-auth:' + dropwizardVersion
 }
 
 compileJava {
