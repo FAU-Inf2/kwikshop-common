@@ -1,7 +1,8 @@
-package de.fau.cs.mad.kwikshop.common;
+package de.fau.cs.mad.kwikshop.common.rest;
 
 
 import com.wordnik.swagger.annotations.Api;
+import de.fau.cs.mad.kwikshop.common.ShoppingList;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -23,5 +24,6 @@ public interface ShoppingListResource {
     @GET
     @Path("{id}")
     ShoppingList getShoppingList(@PathParam("id") int id);
+
 
 }

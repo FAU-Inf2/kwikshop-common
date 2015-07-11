@@ -1,4 +1,4 @@
-package de.fau.cs.mad.kwikshop.common;
+package de.fau.cs.mad.kwikshop.common.rest;
 
 import com.wordnik.swagger.annotations.*;
 
