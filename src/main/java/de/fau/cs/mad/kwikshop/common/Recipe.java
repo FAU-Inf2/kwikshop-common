@@ -35,7 +35,7 @@ public class Recipe implements DomainListObject {
     private String name;
 
     //Hibernate
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
     @JoinColumn(name = "itemId")
     //ORMLite
     @ForeignCollectionField(eager = true)

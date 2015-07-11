@@ -12,6 +12,7 @@ import java.util.*;
 import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObject;
 import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 
+
 import javax.persistence.*;
 
 //Hibernate annotations (server side)
@@ -72,7 +73,7 @@ public class ShoppingList implements DomainListObject {
     private ForeignCollection<AccountID> sharedWith;
 
     //Hibernate
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
     @JoinColumn(name = "itemId")
     //ORMLite
     @ForeignCollectionField(eager = true)
@@ -191,6 +192,9 @@ public class ShoppingList implements DomainListObject {
         return this.owner.getId();
     }
 
+    public void setOwner(User value) {
+        this.owner = value;
+    }
 
     public void addItem(Item item) {
         this.items.add(item);
