@@ -1,9 +1,12 @@
 package de.fau.cs.mad.kwikshop.common;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import javax.persistence.Entity;
 
+@Entity
 @DatabaseTable(tableName = "location")
 public class LastLocation {
 
@@ -22,6 +25,8 @@ public class LastLocation {
     @DatabaseField
     private boolean visited;
 
+
+    @JsonProperty
     public double getLatitude() {
         return latitude;
     }
@@ -30,6 +35,7 @@ public class LastLocation {
         this.latitude = latitude;
     }
 
+    @JsonProperty
     public double getLongitude() {
         return longitude;
     }
@@ -38,6 +44,7 @@ public class LastLocation {
         this.longitude = longitude;
     }
 
+    @JsonProperty
     public String getAddress() {
         return Address;
     }
@@ -46,6 +53,7 @@ public class LastLocation {
         Address = address;
     }
 
+    @JsonProperty
     public boolean isVisited() {
         return visited;
     }
@@ -53,4 +61,5 @@ public class LastLocation {
     public void setVisited(boolean visited) {
         this.visited = visited;
     }
+
 }

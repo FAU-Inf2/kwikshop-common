@@ -1,16 +1,20 @@
 package de.fau.cs.mad.kwikshop.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import javax.persistence.Entity;
 import java.util.Date;
 
+@Entity
 @DatabaseTable(tableName = "item")
 public class Item {
 
     public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";
-
     public static final String FOREIGN_RECIPE_FIELD_NAME = "recipe";
+
 
     @DatabaseField(generatedId = true)
     private int id;
@@ -74,6 +78,7 @@ public class Item {
     @DatabaseField(foreign = true, canBeNull = true)
     private LastLocation location;
 
+
     public Item() {
         // Default no-arg constructor for generating Items, required for ORMLite
     }
@@ -93,6 +98,8 @@ public class Item {
         this.location = item.location;
     }
 
+
+    @JsonProperty
     public int getId() {
         return id;
     }
@@ -102,6 +109,7 @@ public class Item {
         this.id = id;
     }
 
+    @JsonProperty
     public int getOrder() {
         return order;
     }
@@ -110,6 +118,7 @@ public class Item {
         this.order = order;
     }
 
+    @JsonProperty
     public Boolean isBought() {
         return bought;
     }
@@ -118,6 +127,7 @@ public class Item {
         this.bought = bought;
     }
 
+    @JsonProperty
     public String getName() {
         return name;
     }
@@ -126,6 +136,7 @@ public class Item {
         this.name = name;
     }
 
+    @JsonProperty
     public int getAmount() {
         return amount;
     }
@@ -134,6 +145,7 @@ public class Item {
         this.amount = amount;
     }
 
+    @JsonProperty
     public Boolean isHighlight() {
         return highlight;
     }
@@ -142,6 +154,7 @@ public class Item {
         this.highlight = highlight;
     }
 
+    @JsonProperty
     public String getBrand() {
         return (brand == null ? "" : brand);
     }
@@ -150,6 +163,7 @@ public class Item {
         this.brand = brand;
     }
 
+    @JsonProperty
     public String getComment() {
         return (comment == null ? "" : comment);
     }
@@ -158,6 +172,7 @@ public class Item {
         this.comment = comment;
     }
 
+    @JsonProperty
     public Group getGroup() {
         return group;
     }
@@ -166,6 +181,7 @@ public class Item {
         this.group = group;
     }
 
+    @JsonProperty
     public Unit getUnit() {
         return unit;
     }
@@ -174,47 +190,43 @@ public class Item {
         this.unit = unit;
     }
 
-    //TODO: REMOVE THIS, only for testing. The shoppingList should only be changed by ORM
-    public void setShoppingList(ShoppingList shoppingList) {
-        this.shoppingList = shoppingList;
-    }
-
-    public ShoppingList getShoppingList() {
-        return shoppingList;
+    @JsonProperty
+    public Date getLastBought() {
+        return lastBought;
     }
 
     public void setLastBought(Date lastBought) {
         this.lastBought = lastBought;
     }
 
-    public Date getLastBought() {
-        return lastBought;
+    @JsonProperty
+    public boolean isRegularlyRepeatItem() {
+        return regularlyRepeatItem;
     }
 
     public void setRegularlyRepeatItem(boolean regularlyRepeatItem) {
         this.regularlyRepeatItem = regularlyRepeatItem;
     }
 
-    public boolean isRegularlyRepeatItem() {
-        return regularlyRepeatItem;
+    @JsonProperty
+    public TimePeriodsEnum getPeriodType() {
+        return periodType;
     }
 
     public void setPeriodType(TimePeriodsEnum periodType) {
         this.periodType = periodType;
     }
 
-    public TimePeriodsEnum getPeriodType() {
-        return periodType;
+    @JsonProperty
+    public int getSelectedRepeatTime() {
+        return selectedRepeatTime;
     }
 
     public void setSelectedRepeatTime(int selectedRepeatTime) {
         this.selectedRepeatTime = selectedRepeatTime;
     }
 
-    public int getSelectedRepeatTime() {
-        return selectedRepeatTime;
-    }
-
+    @JsonProperty
     public Date getRemindAtDate() {
         return remindAtDate;
     }
@@ -223,19 +235,26 @@ public class Item {
         this.remindAtDate = remindAtDate;
     }
 
+    @JsonProperty
     public boolean isRemindFromNextPurchaseOn() {
         return remindFromNextPurchaseOn;
     }
 
-    public boolean isRemindFromNowOn() {
-        return !remindFromNextPurchaseOn;
-    }
 
     public void setRemindFromNextPurchaseOn(boolean remindFromNextPurchaseOn) {
         this.remindFromNextPurchaseOn = remindFromNextPurchaseOn;
     }
 
+    @JsonProperty
+    public boolean isRemindFromNowOn() {
+        return !remindFromNextPurchaseOn;
+    }
 
+    public void setRemindFromNowOn(boolean remindFromNowOn) {
+        this.remindFromNextPurchaseOn = !remindFromNowOn;
+    }
+
+    @JsonProperty
     public LastLocation getLocation() {
         return location;
     }
@@ -244,18 +263,28 @@ public class Item {
         this.location = location;
     }
 
-    public void setRemindFromNowOn(boolean remindFromNowOn) {
-        this.remindFromNextPurchaseOn = !remindFromNowOn;
+    @JsonIgnore
+    public ShoppingList getShoppingList() {
+        return shoppingList;
     }
+
+    //TODO: REMOVE THIS, only for testing. The shoppingList should only be changed by ORM
+    public void setShoppingList(ShoppingList shoppingList) {
+        this.shoppingList = shoppingList;
+    }
+
 
     @Override
     public boolean equals(Object o) {
-        if (o == null)
+        if (o == null) {
             return false;
-        if (this == o)
+        }
+        if (this == o) {
             return true;
-        if (o.getClass() != this.getClass())
+        }
+        if (o.getClass() != this.getClass()) {
             return false;
+        }
         Item item = (Item) o;
         return item.id == this.id;
     }

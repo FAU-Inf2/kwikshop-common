@@ -1,17 +1,19 @@
 package de.fau.cs.mad.kwikshop.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Iterator;
+import java.util.*;
 
 import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObject;
 
+import javax.persistence.Entity;
+
+@Entity
 @DatabaseTable(tableName = "shoppingList")
 public class ShoppingList implements DomainListObject {
 
@@ -72,10 +74,13 @@ public class ShoppingList implements DomainListObject {
         // Default no-arg constructor for generating Items, required for ORMLite
     }
 
+
+    @JsonProperty
     public int getId() {
         return id;
     }
 
+    @JsonProperty
     public String getName() {
         return name;
     }
@@ -84,13 +89,13 @@ public class ShoppingList implements DomainListObject {
         this.name = name;
     }
 
-    public int getSortTypeInt(){
-        return this.sortTypeInt;
-    }
-
+    @JsonProperty
     public LastLocation getLocation(){ return this.location;}
 
+    public void setLocation(LastLocation location){this.location = location;}
+
     @Override
+    @JsonProperty
     public Date getLastModifiedDate() {
         return lastModifiedDate != null ? lastModifiedDate : new Date(0);
     }
@@ -100,10 +105,16 @@ public class ShoppingList implements DomainListObject {
         lastModifiedDate = value;
     }
 
+    @JsonIgnore
+    public int getSortTypeInt(){
+        return this.sortTypeInt;
+    }
+
     public void setSortTypeInt(int sortTypeInt){
         this.sortTypeInt = sortTypeInt;
     }
 
+    @JsonIgnore
     public CalendarEventDate getCalendarEventDate() {
         return eventDate;
     }
@@ -112,10 +123,12 @@ public class ShoppingList implements DomainListObject {
         this.eventDate = eventDate;
     }
 
+    @JsonIgnore
     public Collection getSharedWith() {
         return sharedWith;
     }
 
+    @JsonIgnore
     public visibility getVisibility() {
         return vis;
     }
@@ -124,10 +137,24 @@ public class ShoppingList implements DomainListObject {
         this.vis = visibility;
     }
 
-    public void setLocation(LastLocation location){this.location = location;}
+    @JsonProperty
+    public Collection<Item> getItems() {
+        if(this.items == null) {
+            return Collections.unmodifiableCollection(new ArrayList<Item>());
+        } else {
+            return Collections.unmodifiableCollection(this.items);
+        }
+    }
 
-
-
+    public Item getItem(int id) {
+        for (Item item : items) {
+            if (item.getId() == id) {
+                return item;
+            }
+        }
+        //TODO: returning null is a bad idea
+        return null;
+    }
 
 
     public void addItem(Item item) {
@@ -147,22 +174,9 @@ public class ShoppingList implements DomainListObject {
         return false;
     }
 
-
     public int size() {
         return items.size();
     }
 
-    public Collection<Item> getItems() {
-        return Collections.unmodifiableCollection(this.items);
-    }
 
-    public Item getItem(int id) {
-        for (Item item : items) {
-            if (item.getId() == id) {
-                return item;
-            }
-        }
-        //TODO: returning null is a bad idea
-        return null;
-    }
 }

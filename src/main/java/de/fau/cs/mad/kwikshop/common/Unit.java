@@ -1,5 +1,7 @@
 package de.fau.cs.mad.kwikshop.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -21,10 +23,13 @@ public class Unit {
   //the name of the string resource for the localized short name of the unit
   private String shortDisplayNameResourceName;
 
+
   public Unit(){
       // Default no-arg constructor for generating Units, required for ORMLite
   }
 
+
+  @JsonProperty
   public int getId() {
     return id;
   }
@@ -33,7 +38,7 @@ public class Unit {
     this.id = id;
   }
 
-
+  @JsonProperty
   public String getName() {
     return this.name;
   }
@@ -42,6 +47,7 @@ public class Unit {
     this.name = value;
   }
 
+  @JsonIgnore
   public String getDisplayNameResourceName() {
     return displayNameResourceName;
   }
@@ -50,6 +56,7 @@ public class Unit {
     this.displayNameResourceName = value;
   }
 
+  @JsonIgnore
   public String getShortDisplayNameResourceName() {
     return shortDisplayNameResourceName;
   }
@@ -78,7 +85,6 @@ public class Unit {
     return equals((Unit) other);
 
   }
-
 
   public boolean equals(Unit other) {
     return other.getId() == this.getId() && other.getName().equals(this.getName());

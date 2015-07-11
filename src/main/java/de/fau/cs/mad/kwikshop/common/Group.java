@@ -1,10 +1,16 @@
 package de.fau.cs.mad.kwikshop.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import javax.persistence.Entity;
+
+@Entity
 @DatabaseTable(tableName = "group")
 public class Group {
+
   @DatabaseField(generatedId = true)
   private int id;
 
@@ -14,10 +20,13 @@ public class Group {
   @DatabaseField(canBeNull = true)
   private String displayNameResourceName;
 
+
   public Group() {
       // Default no-arg constructor for generating Groups, required for ORMLite
   }
 
+
+  @JsonProperty
   public int getId() {
     return id;
   }
@@ -26,6 +35,7 @@ public class Group {
     this.id = id;
   }
 
+  @JsonProperty
   public String getName() {
     return name;
   }
@@ -34,13 +44,16 @@ public class Group {
     this.name = name;
   }
 
+  @JsonIgnore
   public String getDisplayNameResourceName() {
     return displayNameResourceName;
   }
 
+  @JsonIgnore
   public void setDisplayNameResourceName(String value) {
     this.displayNameResourceName = value;
   }
+
 
   @Override
   public int hashCode() {

@@ -6,10 +6,7 @@ import javax.ws.rs.core.Response;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.List;
-/**
- * Created by Andreas Kumlehn on 3/26/15.
- */
+
 @Path("users")
 @Api(value = "users", description = "Operations on users")
 public interface UserResource {
