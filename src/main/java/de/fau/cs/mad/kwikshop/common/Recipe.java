@@ -29,9 +29,9 @@ public class Recipe implements DomainListObject {
     private int id;
 
     //Hibernate
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     //ORMLite
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String name;
 
     //Hibernate
