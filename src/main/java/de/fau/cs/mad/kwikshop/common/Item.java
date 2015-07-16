@@ -2,10 +2,13 @@ package de.fau.cs.mad.kwikshop.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import javax.persistence.*;
+
+import java.sql.Blob;
 import java.util.Date;
 
 
@@ -147,6 +150,11 @@ public class Item {
     @DatabaseField(foreign = true, canBeNull = true)
     private LastLocation location;
 
+    //Hibernate
+    @Column(name = "imageItem")
+    //ORMLite
+    @DatabaseField(canBeNull = true, dataType =  DataType.BYTE_ARRAY)
+    private byte[] imageItem;
 
     public Item() {
         // Default no-arg constructor for generating Items, required for ORMLite
@@ -165,6 +173,7 @@ public class Item {
         this.group = item.group;
         this.unit = item.unit;
         this.location = item.location;
+        this.imageItem = item.imageItem;
     }
 
 
@@ -330,6 +339,15 @@ public class Item {
 
     public void setLocation(LastLocation location) {
         this.location = location;
+    }
+
+    @JsonProperty
+    public byte[] getImageItem() {
+        return imageItem;
+    }
+
+    public void setImageItem(byte[] imageItem) {
+        this.imageItem = imageItem;
     }
 
     @JsonIgnore
