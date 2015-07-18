@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 //Hibernate
 @Entity(name = "Group")
+@Table(name = "productGroup")
 //ORMLite
 @DatabaseTable(tableName = "group")
 public class Group {

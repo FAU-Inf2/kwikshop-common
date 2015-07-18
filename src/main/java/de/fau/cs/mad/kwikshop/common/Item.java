@@ -33,7 +33,7 @@ public class Item {
      * Order of this Item in the ShoppingList
      */
     //Hibernate
-    @Column(name="order")
+    @Column(name="itemOrder")
     //ORMLite
     @DatabaseField
     private int order = -1;
