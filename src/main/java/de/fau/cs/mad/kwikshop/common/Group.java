@@ -29,6 +29,7 @@ public class Group {
   private String name;
 
   //Hibernate : currently not mapped => localization of items needs to be refactored first so it supports both server and client
+  @Transient
   //ORMLite
   @DatabaseField(canBeNull = true)
   private String displayNameResourceName;

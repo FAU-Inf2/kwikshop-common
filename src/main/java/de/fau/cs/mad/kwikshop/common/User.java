@@ -5,12 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 
 @Entity
-/*@NamedQueries({
+@NamedQueries({
         @NamedQuery(
-                name = "User.findByLastName",
-                query = "SELECT u FROM User u WHERE u.lastName = :lastName"
+                name = "User.findBySessionToken",
+                query = "SELECT u FROM User u WHERE u.sessionToken = :sessionToken"
         )
-})*/
+})
 public class User {
 
     @Id

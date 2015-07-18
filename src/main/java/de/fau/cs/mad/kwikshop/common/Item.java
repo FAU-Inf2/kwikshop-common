@@ -93,6 +93,7 @@ public class Item {
      * (Required for ORMLite)
      */
     //Hibernate: not mapped
+    @Transient
     //ORMLite
     @DatabaseField(foreign = true, columnName = FOREIGN_SHOPPINGLIST_FIELD_NAME)
     private ShoppingList shoppingList;
@@ -102,6 +103,7 @@ public class Item {
      * (Required for ORMLite)
      */
     //Hibernate: not mapped
+    @Transient
     //ORMLite
     @DatabaseField(foreign = true, columnName = FOREIGN_RECIPE_FIELD_NAME)
     private Recipe recipe;
