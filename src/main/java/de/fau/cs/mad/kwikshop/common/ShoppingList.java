@@ -138,6 +138,8 @@ public class ShoppingList implements DomainListObject {
         }
     }
 
+    @Override
+    @JsonIgnore
     public Item getItem(int id) {
         for (Item item : items) {
             if (item.getId() == id) {

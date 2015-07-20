@@ -9,6 +9,8 @@ public interface DomainListObject extends DomainObject {
 
     Collection<Item> getItems();
 
+    Item getItem(int id);
+
     void addItem(Item item);
 
     boolean removeItem(int itemId);

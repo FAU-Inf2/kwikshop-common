@@ -7,45 +7,49 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObject;
+import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObjectServer;
+import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 
 import javax.persistence.*;
 import java.util.*;
 
 
-//Hibernate
 @Entity(name ="Recipe")
-public class RecipeServer implements DomainListObject {
+@NamedQueries({
+        @NamedQuery(
+                name = NamedQueryConstants.RECIPE_GET_ALL_FOR_USER,
+                query = "SELECT r FROM RecipeServer r WHERE r.owner.id = :" + NamedQueryConstants.USER_ID
+        ),
+        @NamedQuery(
+                name = NamedQueryConstants.RECIPE_GET_BY_LISTID,
+                query = "SELECT r FROM RecipeServer r WHERE r.owner.id = :" + NamedQueryConstants.USER_ID  + " and r.id = :" + NamedQueryConstants.LIST_ID
+        )
+})
+public class RecipeServer implements DomainListObjectServer {
 
-    //Hibernate
     @Id
     @GeneratedValue
     @Column(name = "id")
     private int id;
 
-    //Hibernate
     @Column(name = "name")
     private String name;
 
-    //Hibernate
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.REFRESH})
     private Collection<Item> items;
 
-    //Hibernate
     @Column(name = "scaleFactor")
     private int scaleFactor = 1;
 
-    //Hibernate
     @Column(name = "scaleName")
     private String scaleName;
 
-    //Hibernate
     @Column(name = "lastModifiedDate")
     private Date lastModifiedDate;
 
     /**
      * Id of the user that owns this list (server side)
      */
-    //Hibernate
     @ManyToOne
     @JoinColumn(name="userId")
     private User owner;
@@ -113,6 +117,7 @@ public class RecipeServer implements DomainListObject {
 
     }
 
+    @Override
     @JsonIgnore
     public Item getItem(int id) {
         for (Item item : items) {
@@ -122,6 +127,17 @@ public class RecipeServer implements DomainListObject {
         }
         //TODO: returning null is a bad idea
         return null;
+    }
+
+    @Override
+    @JsonProperty
+    public String getOwnerId() {
+        return this.owner.getId();
+    }
+
+    @Override
+    public void setOwner(User value) {
+        this.owner = value;
     }
 
 

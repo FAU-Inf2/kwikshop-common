@@ -9,4 +9,9 @@ public class NamedQueryConstants {
     public static final String USER_ID = "userId";
 
     public static final String LIST_ID = "listId";
+
+
+    public static final String RECIPE_GET_ALL_FOR_USER = "Recipe.getAllForUser";
+
+    public static final String RECIPE_GET_BY_LISTID = "Recipe.getByListId";
 }

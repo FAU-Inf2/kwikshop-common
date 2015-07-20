@@ -99,6 +99,7 @@ public class Recipe implements DomainListObject {
 
     }
 
+    @Override
     @JsonIgnore
     public Item getItem(int id) {
         for (Item item : items) {
