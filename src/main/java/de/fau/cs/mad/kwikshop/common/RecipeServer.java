@@ -14,7 +14,7 @@ import javax.persistence.*;
 import java.util.*;
 
 
-@Entity(name ="Recipe")
+@Entity
 @NamedQueries({
         @NamedQuery(
                 name = NamedQueryConstants.RECIPE_GET_ALL_FOR_USER,
