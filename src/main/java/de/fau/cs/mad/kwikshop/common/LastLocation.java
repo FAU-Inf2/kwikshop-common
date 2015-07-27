@@ -50,6 +50,12 @@ public class LastLocation {
     @DatabaseField
     private long timestamp;
 
+    //Hibernate
+    @Column(name = "accuracy")
+    //ORMLite
+    @DatabaseField
+    private long accuracy;
+
 
 
     @JsonProperty
@@ -93,4 +99,7 @@ public class LastLocation {
         this.name = name;
     }
 
+    public long getAccuracy() { return accuracy; }
+
+    public void setAccuracy(long accuracy) { this.accuracy = accuracy;}
 }
