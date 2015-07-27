@@ -54,7 +54,7 @@ public class LastLocation {
     @Column(name = "accuracy")
     //ORMLite
     @DatabaseField
-    private long accuracy;
+    private double accuracy;
 
 
 
@@ -99,7 +99,7 @@ public class LastLocation {
         this.name = name;
     }
 
-    public long getAccuracy() { return accuracy; }
+    public double getAccuracy() { return accuracy; }
 
-    public void setAccuracy(long accuracy) { this.accuracy = accuracy;}
+    public void setAccuracy(double accuracy) { this.accuracy = accuracy;}
 }
