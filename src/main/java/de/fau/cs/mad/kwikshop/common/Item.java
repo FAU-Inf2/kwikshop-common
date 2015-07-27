@@ -54,7 +54,7 @@ public class Item {
     @Column(name = "amount")
     //ORMLite
     @DatabaseField
-    private int amount = 1;
+    private double amount = 1;
 
     //Hibernate
     @Column(name = "isHighlighted")
@@ -217,11 +217,11 @@ public class Item {
     }
 
     @JsonProperty
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
