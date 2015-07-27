@@ -155,8 +155,8 @@ public class Item {
     //Hibernate
     @Column(name = "imageItem")
     //ORMLite
-    @DatabaseField(canBeNull = true, dataType =  DataType.BYTE_ARRAY)
-    private byte[] imageItem;
+    @DatabaseField(canBeNull = true)
+    private String imageItem;
 
     public Item() {
         // Default no-arg constructor for generating Items, required for ORMLite
@@ -344,11 +344,11 @@ public class Item {
     }
 
     @JsonProperty
-    public byte[] getImageItem() {
+    public String getImageItem() {
         return imageItem;
     }
 
-    public void setImageItem(byte[] imageItem) {
+    public void setImageItem(String imageItem) {
         this.imageItem = imageItem;
     }
 
