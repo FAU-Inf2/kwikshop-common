@@ -18,11 +18,11 @@ import java.util.*;
 @NamedQueries({
         @NamedQuery(
                 name = NamedQueryConstants.RECIPE_GET_ALL_FOR_USER,
-                query = "SELECT r FROM RecipeServer r WHERE r.owner.id = :" + NamedQueryConstants.USER_ID
+                query = "SELECT r FROM RecipeServer r WHERE r.ownerId = :" + NamedQueryConstants.USER_ID
         ),
         @NamedQuery(
                 name = NamedQueryConstants.RECIPE_GET_BY_LISTID,
-                query = "SELECT r FROM RecipeServer r WHERE r.owner.id = :" + NamedQueryConstants.USER_ID  + " and r.id = :" + NamedQueryConstants.LIST_ID
+                query = "SELECT r FROM RecipeServer r WHERE r.ownerId = :" + NamedQueryConstants.USER_ID  + " and r.id = :" + NamedQueryConstants.LIST_ID
         )
 })
 public class RecipeServer implements DomainListObjectServer {
@@ -50,9 +50,8 @@ public class RecipeServer implements DomainListObjectServer {
     /**
      * Id of the user that owns this list (server side)
      */
-    @ManyToOne
-    @JoinColumn(name="userId")
-    private User owner;
+    @Column(name="ownerId")
+    private String ownerId;
 
 
     public RecipeServer(int id) {
@@ -132,12 +131,12 @@ public class RecipeServer implements DomainListObjectServer {
     @Override
     @JsonProperty
     public String getOwnerId() {
-        return this.owner.getId();
+        return this.ownerId;
     }
 
     @Override
-    public void setOwner(User value) {
-        this.owner = value;
+    public void setOwnerId(String value) {
+        this.ownerId = value;
     }
 
 
