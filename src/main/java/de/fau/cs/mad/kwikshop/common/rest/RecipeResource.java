@@ -16,7 +16,12 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-
+/*
+    NOTE:
+    If adding/editing a method that takes a path parameter, make sure the @PathParam annotation
+     comes before the @ApiParam annotation, otherwise Jaxrs2etrofit will create an unusable client interface
+     (this affects the android client that shares sources with the sever)
+ */
 @Path("recipe")
 @Api(value = "recipe", description = "Storage and retrieval of recipes")
 public interface RecipeResource {
