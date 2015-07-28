@@ -15,7 +15,12 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-
+/*
+    NOTE:
+    If adding/editing a method that takes a path parameter, make sure the @PathParam annotation
+     comes before the @ApiParam annotation, otherwise Jaxrs2etrofit will create an unusable client interface
+     (this affects the android client that shares sources with the sever)
+ */
 @Path("shoppinglist")
 @Api(value = "shoppinglist", description = "Storage and retrieval of shopping lists")
 public interface ShoppingListResource {
@@ -54,6 +59,7 @@ public interface ShoppingListResource {
     @GET
     @UnitOfWork
     @Path("{listId}/{itemId}")
+    @Produces(MediaType.APPLICATION_JSON)
     Item getListItem(@Auth User user, @PathParam("listId") int listId, @PathParam("itemId") int itemId);
 
 
@@ -81,8 +87,8 @@ public interface ShoppingListResource {
             response = Item.class)
     Item updateItem(
             @Auth User user,
-            @ApiParam(value ="id of the list the item belongs to", required = true) @PathParam("listId") int listId,
-            @ApiParam(value = "id of the Item to update", required = true) @PathParam("itemId") int itemId,
+            @PathParam("listId") @ApiParam(value ="id of the list the item belongs to", required = true)  int listId,
+            @PathParam("itemId") @ApiParam(value = "id of the Item to update", required = true) int itemId,
             @ApiParam(value = "new details of the specified item", required = true) Item item);
 
     @DELETE
@@ -96,7 +102,7 @@ public interface ShoppingListResource {
             response = Item.class)
     void deleteListItem(
             @Auth User user,
-            @ApiParam(value ="id of the list the item belongs to", required = true) @PathParam("listId") int listId,
-            @ApiParam(value = "id of the Item to update", required = true) @PathParam("itemId") int itemId);
+            @PathParam("listId") @ApiParam(value ="id of the list the item belongs to", required = true)  int listId,
+            @PathParam("itemId") @ApiParam(value = "id of the Item to update", required = true)  int itemId);
 
 }
