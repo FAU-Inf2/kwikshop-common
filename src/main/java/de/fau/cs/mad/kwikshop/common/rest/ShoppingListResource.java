@@ -54,6 +54,7 @@ public interface ShoppingListResource {
     @GET
     @UnitOfWork
     @Path("{listId}/{itemId}")
+    @Produces(MediaType.APPLICATION_JSON)
     Item getListItem(@Auth User user, @PathParam("listId") int listId, @PathParam("itemId") int itemId);
 
 
