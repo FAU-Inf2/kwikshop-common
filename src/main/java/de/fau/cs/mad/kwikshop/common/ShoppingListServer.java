@@ -2,11 +2,14 @@ package de.fau.cs.mad.kwikshop.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.*;
 
-import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObject;
 import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObjectServer;
+import de.fau.cs.mad.kwikshop.common.serialization.DateDeserializer;
+import de.fau.cs.mad.kwikshop.common.serialization.DateSerializer;
 import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 
 import javax.persistence.*;
@@ -96,11 +99,13 @@ public class ShoppingListServer implements DomainListObjectServer {
 
     @Override
     @JsonProperty
+    @JsonSerialize(using = DateSerializer.class)
     public Date getLastModifiedDate() {
         return lastModifiedDate != null ? lastModifiedDate : new Date(0);
     }
 
     @Override
+    @JsonDeserialize(using = DateDeserializer.class)
     public void setLastModifiedDate(Date value) {
         lastModifiedDate = value;
     }
