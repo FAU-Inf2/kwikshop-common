@@ -2,11 +2,14 @@ package de.fau.cs.mad.kwikshop.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.*;
 
-import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObject;
 import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObjectServer;
+import de.fau.cs.mad.kwikshop.common.serialization.DateDeserializer;
+import de.fau.cs.mad.kwikshop.common.serialization.DateSerializer;
 import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 
 import javax.persistence.*;
@@ -16,11 +19,11 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = NamedQueryConstants.SHOPPINGLIST_GET_ALL_FOR_USER,
-                query = "SELECT s FROM ShoppingListServer s WHERE s.owner.id = :" + NamedQueryConstants.USER_ID
+                query = "SELECT s FROM ShoppingListServer s WHERE s.ownerId = :" + NamedQueryConstants.USER_ID
         ),
         @NamedQuery(
                 name = NamedQueryConstants.SHOPPINGLIST_GET_BY_LISTID,
-                query = "SELECT s FROM ShoppingListServer s WHERE s.owner.id = :" + NamedQueryConstants.USER_ID  + " and s.id = :" + NamedQueryConstants.LIST_ID
+                query = "SELECT s FROM ShoppingListServer s WHERE s.ownerId = :" + NamedQueryConstants.USER_ID  + " and s.id = :" + NamedQueryConstants.LIST_ID
         )
 })
 public class ShoppingListServer implements DomainListObjectServer {
@@ -62,9 +65,8 @@ public class ShoppingListServer implements DomainListObjectServer {
     /**
      * Id of the user that owns this list (server side)
      */
-    @ManyToOne
-    @JoinColumn(name="userId")
-    private User owner;
+    @Column(name = "ownerId")
+    private String ownerId;
 
 
     public ShoppingListServer(int id) {
@@ -97,11 +99,13 @@ public class ShoppingListServer implements DomainListObjectServer {
 
     @Override
     @JsonProperty
+    @JsonSerialize(using = DateSerializer.class)
     public Date getLastModifiedDate() {
         return lastModifiedDate != null ? lastModifiedDate : new Date(0);
     }
 
     @Override
+    @JsonDeserialize(using = DateDeserializer.class)
     public void setLastModifiedDate(Date value) {
         lastModifiedDate = value;
     }
@@ -140,12 +144,12 @@ public class ShoppingListServer implements DomainListObjectServer {
     @Override
     @JsonProperty
     public String getOwnerId() {
-        return this.owner.getId();
+        return this.ownerId;
     }
 
     @Override
-    public void setOwner(User value) {
-        this.owner = value;
+    public void setOwnerId(String value) {
+        this.ownerId = value;
     }
 
     public void addItem(Item item) {
