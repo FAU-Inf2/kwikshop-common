@@ -1,9 +1,14 @@
 package de.fau.cs.mad.kwikshop.common;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import de.fau.cs.mad.kwikshop.common.localization.ResourceId;
+import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdDeserializer;
+import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdSerializer;
 
 import javax.persistence.*;
 
@@ -29,15 +34,18 @@ public class Group {
   @DatabaseField(canBeNull = false)
   private String name;
 
-  //Hibernate : currently not mapped => localization of items needs to be refactored first so it supports both server and client
-  @Transient
-  //ORMLite
-  @DatabaseField(canBeNull = true)
-  private String displayNameResourceName;
-
+  @Column
+  @Enumerated(EnumType.STRING)
+  @DatabaseField(dataType = DataType.ENUM_STRING)
+  private ResourceId resourceId;
 
   public Group() {
       // Default no-arg constructor for generating Groups, required for ORMLite
+  }
+
+  public Group(String name, ResourceId resourceId) {
+    setName(name);
+    setResourceId(resourceId);
   }
 
 
@@ -59,14 +67,15 @@ public class Group {
     this.name = name;
   }
 
-  @JsonIgnore
-  public String getDisplayNameResourceName() {
-    return displayNameResourceName;
+  @JsonProperty
+  @JsonSerialize(using = ResourceIdSerializer.class)
+  public ResourceId getResourceId() {
+    return this.resourceId;
   }
 
-  @JsonIgnore
-  public void setDisplayNameResourceName(String value) {
-    this.displayNameResourceName = value;
+  @JsonDeserialize(using = ResourceIdDeserializer.class)
+  public void setResourceId(ResourceId value) {
+    this.resourceId = value;
   }
 
 
