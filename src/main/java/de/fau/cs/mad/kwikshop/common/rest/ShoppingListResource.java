@@ -18,7 +18,7 @@ import java.util.List;
 /*
     NOTE:
     If adding/editing a method that takes a path parameter, make sure the @PathParam annotation
-     comes before the @ApiParam annotation, otherwise Jaxrs2etrofit will create an unusable client interface
+     comes before the @ApiParam annotation, otherwise Jaxrs2retrofit will create an unusable client interface
      (this affects the android client that shares sources with the sever)
  */
 @Path("shoppinglist")
@@ -36,7 +36,7 @@ public interface ShoppingListResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{listId}")
     @UnitOfWork
-    ShoppingListServer getList(@Auth User user, @PathParam("listId") String listId);
+    ShoppingListServer getList(@Auth User user, @PathParam("listId") int listId);
 
     @PUT
     @UnitOfWork
