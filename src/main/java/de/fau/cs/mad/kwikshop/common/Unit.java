@@ -2,10 +2,17 @@ package de.fau.cs.mad.kwikshop.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import javax.persistence.*;
+
+import de.fau.cs.mad.kwikshop.common.localization.ResourceId;
+import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdDeserializer;
+import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdSerializer;
 
 //Hibernate
 @Entity(name = "Unit")
@@ -30,29 +37,32 @@ public class Unit {
   @DatabaseField(canBeNull = false)
   private String name;
 
-  /**
-   * The name of the string resource for the localized name of the unit
-   */
-  //Hibernate : currently not mapped => localization of items needs to be refactored first so it supports both server and client
-  @Transient
-  //ORMLite
-  @DatabaseField(canBeNull = true)
-  private String displayNameResourceName;
+  @Column
+  @Enumerated(EnumType.STRING)
+  @DatabaseField(dataType = DataType.ENUM_STRING)
+  private ResourceId resourceId;
 
-  /**
-   * The name of the string resource for the localized short name of the unit
-   */
-  //Hibernate : currently not mapped => localization of items needs to be refactored first so it supports both server and client
-  @Transient
-  //ORMLite
-  @DatabaseField(canBeNull = true)
-  private String shortDisplayNameResourceName;
+
+  @Column
+  @Enumerated(EnumType.STRING)
+  @DatabaseField(dataType = DataType.ENUM_STRING)
+  private ResourceId shortNameResourceId;
 
 
   public Unit(){
       // Default no-arg constructor for generating Units, required for ORMLite
   }
 
+
+  public Unit(String name, ResourceId resourceId) {
+    this(name, resourceId, null);
+  }
+
+  public Unit(String name, ResourceId resourceId, ResourceId shortNameResourceId) {
+    setName(name);
+    setResourceId(resourceId);
+    setShortNameResourceId(shortNameResourceId);
+  }
 
   @JsonProperty
   public int getId() {
@@ -72,22 +82,28 @@ public class Unit {
     this.name = value;
   }
 
-  @JsonIgnore
-  public String getDisplayNameResourceName() {
-    return displayNameResourceName;
+
+
+  @JsonProperty
+  @JsonSerialize(using = ResourceIdSerializer.class)
+  public ResourceId getResourceId() {
+      return this.resourceId;
   }
 
-  public void setDisplayNameResourceName(String value) {
-    this.displayNameResourceName = value;
+  @JsonDeserialize(using = ResourceIdDeserializer.class)
+  public void setResourceId(ResourceId value) {
+    this.resourceId = value;
   }
 
-  @JsonIgnore
-  public String getShortDisplayNameResourceName() {
-    return shortDisplayNameResourceName;
+  @JsonProperty
+  @JsonSerialize(using = ResourceIdSerializer.class)
+  public ResourceId getShortNameResourceId() {
+    return this.shortNameResourceId;
   }
 
-  public void setShortDisplayNameResourceName(String value) {
-    this.shortDisplayNameResourceName = value;
+  @JsonDeserialize(using = ResourceIdDeserializer.class)
+  public void setShortNameResourceId(ResourceId value) {
+    this.shortNameResourceId = value;
   }
 
 
