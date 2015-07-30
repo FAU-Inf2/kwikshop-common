@@ -128,6 +128,11 @@ public class Unit {
   }
 
   public boolean equals(Unit other) {
+
+    if(other == null) {
+      return false;
+    }
+
     return other.getId() == this.getId() && other.getName().equals(this.getName());
   }
 
