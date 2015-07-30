@@ -114,15 +114,17 @@ public class Item {
     @DatabaseField(canBeNull = true)
     private Date lastBought;
 
-    //Hibernate
-    @Column(name = "isRegularlyRepeatedItem")
-    //ORMLite
-    @DatabaseField
-    private boolean regularlyRepeatItem;
 
     //Hibernate
     @Column(name = "repeatType")
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
+    //ORMLite
+    @DatabaseField(canBeNull = true) //TODO: do not allow null
+    private RepeatType repeatType;
+
+    //Hibernate
+    @Column(name = "repeatScheduleType")
+    @Enumerated(EnumType.STRING)
     //ORMLite
     @DatabaseField
     private TimePeriodsEnum periodType;
@@ -280,12 +282,14 @@ public class Item {
     }
 
     @JsonProperty
-    public boolean isRegularlyRepeatItem() {
-        return regularlyRepeatItem;
+    public RepeatType getRepeatType() {
+        return this.repeatType == null
+                ? RepeatType.None
+                : this.repeatType;
     }
 
-    public void setRegularlyRepeatItem(boolean regularlyRepeatItem) {
-        this.regularlyRepeatItem = regularlyRepeatItem;
+    public void setRepeatType(RepeatType value) {
+        this.repeatType = value;
     }
 
     @JsonProperty
