@@ -21,13 +21,18 @@ public class Item {
     public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";
     public static final String FOREIGN_RECIPE_FIELD_NAME = "recipe";
 
-    //Hibernate
+    //Hibernate: Ignore  client Id
+    @Transient
+    //ORMLite
+    @DatabaseField(generatedId = true)
+    private int id;
+
     @Id
     @GeneratedValue
     @Column(name = "id")
     //ORMLite
-    @DatabaseField(generatedId = true)
-    private int id;
+    @DatabaseField
+    private int serverId;
 
     /**
      * Order of this Item in the ShoppingList
@@ -106,6 +111,7 @@ public class Item {
     @Transient
     //ORMLite
     @DatabaseField(foreign = true, columnName = FOREIGN_RECIPE_FIELD_NAME)
+    @SuppressWarnings("unused")
     private Recipe recipe;
 
     //Hibernate
@@ -181,7 +187,7 @@ public class Item {
     }
 
 
-    @JsonProperty
+    @JsonIgnore
     public int getId() {
         return id;
     }
@@ -189,6 +195,11 @@ public class Item {
     // TODO: REMOVE THIS, only for testing. IDs should be read only
     public void setID(int id) {
         this.id = id;
+    }
+
+    @JsonProperty("id")
+    public int getServerId() {
+        return this.serverId;
     }
 
     @JsonProperty

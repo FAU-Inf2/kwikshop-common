@@ -134,7 +134,7 @@ public class ShoppingListServer implements DomainListObjectServer {
     @JsonIgnore
     public Item getItem(int id) {
         for (Item item : items) {
-            if (item.getId() == id) {
+            if (item.getServerId() == id) {
                 return item;
             }
         }
@@ -162,7 +162,7 @@ public class ShoppingListServer implements DomainListObjectServer {
 
         while (iterator.hasNext()) {
             Item currentItem = iterator.next();
-            if (currentItem.getId() == id) {
+            if (currentItem.getServerId() == id) {
                 items.remove(currentItem);
                 return true;
             }

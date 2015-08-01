@@ -1,7 +1,5 @@
 package de.fau.cs.mad.kwikshop.common;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -11,7 +9,6 @@ import java.util.*;
 
 import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObject;
 
-import javax.persistence.*;
 
 
 //ORMLite
@@ -20,6 +17,9 @@ public class Recipe implements DomainListObject {
 
     @DatabaseField(generatedId = true)
     private int id;
+
+    @DatabaseField
+    private int serverId;
 
     @DatabaseField
     private String name;
@@ -47,12 +47,18 @@ public class Recipe implements DomainListObject {
     }
 
 
-    @JsonProperty
     public int getId() {
         return id;
     }
 
-    @JsonProperty
+    public int getServerId() {
+        return this.serverId;
+    }
+
+    public void setServerId(int value) {
+        this.serverId = value;
+    }
+
     public String getName() {
         return name;
     }
@@ -61,14 +67,12 @@ public class Recipe implements DomainListObject {
         this.name = name;
     }
 
-    @JsonProperty
     public int getScaleFactor(){ return scaleFactor; }
 
     public void setScaleFactor(int scaleFactor){
         this.scaleFactor = scaleFactor;
     }
 
-    @JsonProperty
     public String getScaleName(){
         return scaleName;
     }
@@ -77,7 +81,6 @@ public class Recipe implements DomainListObject {
         this.scaleName = scaleName;
     }
 
-    @JsonProperty
     @Override
     public Date getLastModifiedDate() {
         return lastModifiedDate != null ? lastModifiedDate : new Date(0);
@@ -88,7 +91,6 @@ public class Recipe implements DomainListObject {
         lastModifiedDate = value;
     }
 
-    @JsonProperty
     public Collection<Item> getItems() {
 
         if(this.items == null) {
@@ -100,7 +102,6 @@ public class Recipe implements DomainListObject {
     }
 
     @Override
-    @JsonIgnore
     public Item getItem(int id) {
         for (Item item : items) {
             if (item.getId() == id) {

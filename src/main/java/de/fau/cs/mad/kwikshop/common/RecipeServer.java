@@ -121,7 +121,7 @@ public class RecipeServer implements DomainListObjectServer {
     @JsonIgnore
     public Item getItem(int id) {
         for (Item item : items) {
-            if (item.getId() == id) {
+            if (item.getServerId() == id) {
                 return item;
             }
         }
@@ -150,7 +150,7 @@ public class RecipeServer implements DomainListObjectServer {
 
         while (iterator.hasNext()) {
             Item currentItem = iterator.next();
-            if (currentItem.getId() == id) {
+            if (currentItem.getServerId() == id) {
                 items.remove(currentItem);
                 return true;
             }
@@ -159,7 +159,7 @@ public class RecipeServer implements DomainListObjectServer {
     }
 
     public boolean removeItem(Item item) {
-        return removeItem(item.getId());
+        return removeItem(item.getServerId());
     }
 
     public int size() {

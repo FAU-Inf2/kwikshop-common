@@ -1,7 +1,5 @@
 package de.fau.cs.mad.kwikshop.common;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -10,10 +8,6 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.*;
 
 import de.fau.cs.mad.kwikshop.common.interfaces.DomainListObject;
-import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
-
-
-import javax.persistence.*;
 
 
 //ORMLite annotations (android client)
@@ -26,6 +20,9 @@ public class ShoppingList implements DomainListObject {
     //ORMLite
     @DatabaseField(generatedId = true)
     private int id;
+
+    @DatabaseField
+    private int serverId;
 
     /**
      * not unique, can be set by user
@@ -76,12 +73,19 @@ public class ShoppingList implements DomainListObject {
     }
 
 
-    @JsonProperty
     public int getId() {
         return id;
     }
 
-    @JsonProperty
+
+    public int getServerId() {
+        return this.serverId;
+    }
+
+    public void setServerId(int value) {
+        this.serverId = serverId;
+    }
+
     public String getName() {
         return name;
     }
@@ -90,13 +94,11 @@ public class ShoppingList implements DomainListObject {
         this.name = name;
     }
 
-    @JsonProperty
     public LastLocation getLocation(){ return this.location;}
 
     public void setLocation(LastLocation location){this.location = location;}
 
     @Override
-    @JsonProperty
     public Date getLastModifiedDate() {
         return lastModifiedDate != null ? lastModifiedDate : new Date(0);
     }
@@ -106,7 +108,6 @@ public class ShoppingList implements DomainListObject {
         lastModifiedDate = value;
     }
 
-    @JsonIgnore
     public int getSortTypeInt(){
         return this.sortTypeInt;
     }
@@ -115,7 +116,6 @@ public class ShoppingList implements DomainListObject {
         this.sortTypeInt = sortTypeInt;
     }
 
-    @JsonIgnore
     public CalendarEventDate getCalendarEventDate() {
         return eventDate;
     }
@@ -124,12 +124,10 @@ public class ShoppingList implements DomainListObject {
         this.eventDate = eventDate;
     }
 
-    @JsonIgnore
     public Collection getSharedWith() {
         return sharedWith;
     }
 
-    @JsonProperty
     public Collection<Item> getItems() {
         if(this.items == null) {
             return Collections.unmodifiableCollection(new ArrayList<Item>());
@@ -139,7 +137,6 @@ public class ShoppingList implements DomainListObject {
     }
 
     @Override
-    @JsonIgnore
     public Item getItem(int id) {
         for (Item item : items) {
             if (item.getId() == id) {
