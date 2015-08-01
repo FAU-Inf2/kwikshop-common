@@ -1,5 +1,6 @@
 package de.fau.cs.mad.kwikshop.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -20,13 +21,19 @@ import javax.persistence.*;
 @DatabaseTable(tableName = "group")
 public class Group {
 
+  //Hibernate: ignore client id
+  @Transient
+  //ORMLite
+  @DatabaseField(generatedId = true)
+  private int id;
+
   //Hibernate
   @Id
   @GeneratedValue
   @Column(name = "id")
   //ORMLite
-  @DatabaseField(generatedId = true)
-  private int id;
+  @DatabaseField
+  private int serverId;
 
   //Hibernate
   @Column(name = "name")
@@ -49,13 +56,23 @@ public class Group {
   }
 
 
-  @JsonProperty
+  @JsonIgnore
   public int getId() {
     return id;
   }
 
   public void setId(int id) {
     this.id = id;
+  }
+
+  @JsonProperty("id")
+  public int getServerId() {
+    return this.serverId;
+  }
+
+  @JsonProperty("id")
+  public void setServerId(int value) {
+    this.serverId = value;
   }
 
   @JsonProperty
@@ -102,6 +119,7 @@ public class Group {
       return false;
     }
 
+    //TODO: How can this work on server?
     return other.getId() == this.getId() && other.getName().equals(this.getName());
   }
 

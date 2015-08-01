@@ -8,17 +8,25 @@ import javax.persistence.*;
 
 //Hibernate
 @Entity(name = "Location")
+@Table(name = "Location")
 //ORMLite
 @DatabaseTable(tableName = "location")
 public class LastLocation {
+
+    //Hibernate : ignore client id
+    @Transient
+    //ORMLite
+    @DatabaseField(generatedId = true)
+    private int id;
 
     //Hibernate
     @Id
     @GeneratedValue
     @Column(name = "id")
     //ORMLite
-    @DatabaseField(generatedId = true)
-    private int id;
+    @DatabaseField
+    private int serverId;
+
 
     //Hibernate
     @Column(name = "latitude")

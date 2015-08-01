@@ -20,13 +20,20 @@ import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdSerializer;
 @DatabaseTable(tableName = "unit")
 public class Unit {
 
+  //Hibernate: ignore client id
+  @Transient
+  //ORMLite
+  @DatabaseField(generatedId = true)
+  private int id;
+
+
   //Hibernate
   @Id
   @GeneratedValue
   @Column(name = "id")
   //ORMLite
-  @DatabaseField(generatedId = true)
-  private int id;
+  @DatabaseField
+  private int serverId;
 
   /**
    * Language-neutral name of the unit (= english)
@@ -64,13 +71,23 @@ public class Unit {
     setShortNameResourceId(shortNameResourceId);
   }
 
-  @JsonProperty
+  @JsonIgnore
   public int getId() {
     return id;
   }
 
   public void setId(int id) {
     this.id = id;
+  }
+
+  @JsonProperty("id")
+  public int getServerId() {
+    return this.serverId;
+  }
+
+  @JsonProperty("id")
+  public void setServerId(int value) {
+    this.serverId = serverId;
   }
 
   @JsonProperty
@@ -133,6 +150,7 @@ public class Unit {
       return false;
     }
 
+    //TODO: Figure out how this can work on server
     return other.getId() == this.getId() && other.getName().equals(this.getName());
   }
 
