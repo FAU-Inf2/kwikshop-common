@@ -53,6 +53,9 @@ public class RecipeServer implements DomainListObjectServer {
     @Column(name="ownerId")
     private String ownerId;
 
+    @Column(name = "version")
+    private int version;
+
 
     public RecipeServer(int id) {
         this.id = id;
@@ -105,6 +108,17 @@ public class RecipeServer implements DomainListObjectServer {
     public void setLastModifiedDate(Date value) {
         lastModifiedDate = value;
     }
+
+
+    @JsonProperty
+    public int getVersion() {
+        return this.version;
+    }
+
+    public void setVersion(int value) {
+        this.version = value;
+    }
+
 
     @JsonProperty
     public Collection<Item> getItems() {

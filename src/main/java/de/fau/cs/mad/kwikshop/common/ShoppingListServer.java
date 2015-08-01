@@ -68,6 +68,9 @@ public class ShoppingListServer implements DomainListObjectServer {
     @Column(name = "ownerId")
     private String ownerId;
 
+    @Column(name = "version")
+    private int version;
+
 
     public ShoppingListServer(int id) {
         this.id = id;
@@ -127,6 +130,15 @@ public class ShoppingListServer implements DomainListObjectServer {
         } else {
             return Collections.unmodifiableCollection(this.items);
         }
+    }
+
+    @JsonProperty
+    public int getVersion() {
+        return this.version;
+    }
+
+    public void setVersion(int value) {
+        this.version = value;
     }
 
 

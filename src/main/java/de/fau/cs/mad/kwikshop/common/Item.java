@@ -166,6 +166,12 @@ public class Item {
     @DatabaseField(canBeNull = true)
     private String imageItem;
 
+    //Hibernate
+    @Column(name = "version")
+    //ORMlite
+    @DatabaseField
+    private int version;
+
     public Item() {
         // Default no-arg constructor for generating Items, required for ORMLite
     }
@@ -371,6 +377,17 @@ public class Item {
     public void setImageItem(String imageItem) {
         this.imageItem = imageItem;
     }
+
+
+    @JsonProperty
+    public int getVersion() {
+        return this.version;
+    }
+
+    public void setVersion(int value) {
+        this.version = value;
+    }
+
 
     @JsonIgnore
     public ShoppingList getShoppingList() {

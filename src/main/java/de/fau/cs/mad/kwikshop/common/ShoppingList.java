@@ -63,6 +63,8 @@ public class ShoppingList implements DomainListObject {
     @DatabaseField (canBeNull = true)
     private Date lastModifiedDate;
 
+    @DatabaseField
+    private int serverVersion;
 
     public ShoppingList(int id) {
         this.id = id;
@@ -106,6 +108,14 @@ public class ShoppingList implements DomainListObject {
     @Override
     public void setLastModifiedDate(Date value) {
         lastModifiedDate = value;
+    }
+
+    public int getServerVersion() {
+        return this.serverVersion;
+    }
+
+    public void setServerVersion(int value) {
+        this.serverVersion = value;
     }
 
     public int getSortTypeInt(){

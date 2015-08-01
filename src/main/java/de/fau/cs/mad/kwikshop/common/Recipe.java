@@ -36,6 +36,8 @@ public class Recipe implements DomainListObject {
     @DatabaseField (canBeNull = true)
     private Date lastModifiedDate;
 
+    @DatabaseField
+    private int serverVersion;
 
     public Recipe(int id) {
         this.id = id;
@@ -89,6 +91,14 @@ public class Recipe implements DomainListObject {
     @Override
     public void setLastModifiedDate(Date value) {
         lastModifiedDate = value;
+    }
+
+    public int getServerVersion() {
+        return this.serverVersion;
+    }
+
+    public void setServerVersion(int value) {
+        this.serverVersion = value;
     }
 
     public Collection<Item> getItems() {
