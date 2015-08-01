@@ -19,11 +19,19 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = NamedQueryConstants.SHOPPINGLIST_GET_ALL_FOR_USER,
-                query = "SELECT s FROM ShoppingListServer s WHERE s.ownerId = :" + NamedQueryConstants.USER_ID
+                query = "SELECT s FROM ShoppingListServer s WHERE s.ownerId = :" + NamedQueryConstants.USER_ID +
+                        "AND s.deleted = false"
         ),
         @NamedQuery(
                 name = NamedQueryConstants.SHOPPINGLIST_GET_BY_LISTID,
-                query = "SELECT s FROM ShoppingListServer s WHERE s.ownerId = :" + NamedQueryConstants.USER_ID  + " and s.id = :" + NamedQueryConstants.LIST_ID
+                query = "SELECT s FROM ShoppingListServer s WHERE s.ownerId = :" + NamedQueryConstants.USER_ID  +
+                        " AND s.id = :" + NamedQueryConstants.LIST_ID +
+                        " AND s.deleted = false"
+        ),
+        @NamedQuery(
+                name = NamedQueryConstants.SHOPPINGLIST_GET_DELETED_LISTS,
+                query = "SELECT s FROM ShoppingListServer s WHERE s.ownerId = :" + NamedQueryConstants.USER_ID +
+                        "AND s.deleted = true"
         )
 })
 public class ShoppingListServer implements DomainListObjectServer {
@@ -33,7 +41,7 @@ public class ShoppingListServer implements DomainListObjectServer {
      */
     @Id
     @GeneratedValue
-    @Column(name="listId")
+    @Column(name="id")
     private int id;
 
     /**
@@ -71,6 +79,9 @@ public class ShoppingListServer implements DomainListObjectServer {
     @Column(name = "version")
     private int version;
 
+
+    @Column(name = "deleted")
+    private boolean deleted;
 
     public ShoppingListServer(int id) {
         this.id = id;
@@ -141,6 +152,15 @@ public class ShoppingListServer implements DomainListObjectServer {
         this.version = value;
     }
 
+    @JsonIgnore
+    public boolean getDeleted() {
+       return this.deleted;
+    }
+
+    @Override
+    public void setDeleted(boolean value) {
+       this.deleted = value;
+    }
 
     @Override
     @JsonIgnore

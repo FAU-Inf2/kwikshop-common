@@ -9,4 +9,8 @@ public interface DomainListObjectServer extends DomainListObject {
 
     void setOwnerId(String value);
 
+    boolean getDeleted();
+
+    void setDeleted(boolean value);
+
 }

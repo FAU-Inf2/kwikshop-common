@@ -59,6 +59,13 @@ public interface RecipeResource {
 
     @GET
     @UnitOfWork
+    @Path("deleted")
+    @Produces(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Gets the Ids of the user's shopping lists that were deleted")
+    List<Integer> getDeletedLists(@Auth User user);
+
+    @GET
+    @UnitOfWork
     @Path("{listId}/{itemId}")
     Item getListItem(@Auth User user, @PathParam("listId") int listId, @PathParam("itemId") int itemId);
 
@@ -104,4 +111,12 @@ public interface RecipeResource {
             @Auth User user,
             @PathParam("listId") @ApiParam(value ="id of the list the item belongs to", required = true)  int listId,
             @PathParam("itemId") @ApiParam(value = "id of the Item to update", required = true) int itemId);
+
+    @GET
+    @UnitOfWork
+    @Path("{listId}/deleted")
+    @ApiOperation(value = "Gets the items that were deleted from the list")
+    List<Integer> getDeletedListItems(@Auth User user,
+                                      @PathParam("listId") @ApiParam(value = "The id of the list to get deleted items for", required = true) int listId);
+
 }

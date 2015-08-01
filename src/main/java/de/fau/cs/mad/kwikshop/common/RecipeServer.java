@@ -18,11 +18,19 @@ import java.util.*;
 @NamedQueries({
         @NamedQuery(
                 name = NamedQueryConstants.RECIPE_GET_ALL_FOR_USER,
-                query = "SELECT r FROM RecipeServer r WHERE r.ownerId = :" + NamedQueryConstants.USER_ID
+                query = "SELECT r FROM RecipeServer r WHERE r.ownerId = :" + NamedQueryConstants.USER_ID +
+                        " AND r.deleted = false"
         ),
         @NamedQuery(
                 name = NamedQueryConstants.RECIPE_GET_BY_LISTID,
-                query = "SELECT r FROM RecipeServer r WHERE r.ownerId = :" + NamedQueryConstants.USER_ID  + " and r.id = :" + NamedQueryConstants.LIST_ID
+                query = "SELECT r FROM RecipeServer r WHERE r.ownerId = :" + NamedQueryConstants.USER_ID  +
+                        " AND r.id = :" + NamedQueryConstants.LIST_ID +
+                        " AND r.deleted = false"
+        ),
+        @NamedQuery(
+                name = NamedQueryConstants.RECIPE_GET_DELETED_LISTS,
+                query = "SELECT r FROM RecipeServer r WHERE r.ownerId = :" + NamedQueryConstants.USER_ID +
+                        " AND r.deleted = true"
         )
 })
 public class RecipeServer implements DomainListObjectServer {
@@ -56,6 +64,8 @@ public class RecipeServer implements DomainListObjectServer {
     @Column(name = "version")
     private int version;
 
+    @Column(name = "deleted")
+    private boolean deleted;
 
     public RecipeServer(int id) {
         this.id = id;
@@ -117,6 +127,17 @@ public class RecipeServer implements DomainListObjectServer {
 
     public void setVersion(int value) {
         this.version = value;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean getDeleted() {
+        return deleted;
+    }
+
+    @Override
+    public void setDeleted(boolean value) {
+        this.deleted = value;
     }
 
 
