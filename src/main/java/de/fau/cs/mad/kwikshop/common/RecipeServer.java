@@ -67,6 +67,7 @@ public class RecipeServer implements DomainListObjectServer {
     @Column(name = "deleted")
     private boolean deleted;
 
+
     public RecipeServer(int id) {
         this.id = id;
     }
@@ -141,7 +142,7 @@ public class RecipeServer implements DomainListObjectServer {
     }
 
 
-    @JsonProperty
+    @JsonIgnore
     public Collection<Item> getItems() {
 
         if(this.items == null) {

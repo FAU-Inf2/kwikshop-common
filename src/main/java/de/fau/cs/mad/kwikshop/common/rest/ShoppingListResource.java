@@ -50,7 +50,7 @@ public interface ShoppingListResource {
     @Path("{listId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    ShoppingListServer updateList(@Auth User user, @PathParam("listId") int listId, ShoppingListServer list, @QueryParam("updateItems") boolean updateItems);
+    ShoppingListServer updateList(@Auth User user, @PathParam("listId") int listId, ShoppingListServer list);
 
     @DELETE
     @UnitOfWork
@@ -114,10 +114,16 @@ public interface ShoppingListResource {
             @PathParam("itemId") @ApiParam(value = "id of the Item to update", required = true)  int itemId);
 
 
+    @GET
+    @UnitOfWork
+    @Path("{listId}/items")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    List<Item> getListItems(@Auth User user, @PathParam("listId") int listId);
 
     @GET
     @UnitOfWork
-    @Path("{listId}/deleted")
+    @Path("{listId}/items/deleted")
     @ApiOperation(value = "Gets the items that were deleted from the list")
     List<DeletionInfo> getDeletedListItems(@Auth User user,
                                       @PathParam("listId") @ApiParam(value = "The id of the list to get deleted items for", required = true) int listId);

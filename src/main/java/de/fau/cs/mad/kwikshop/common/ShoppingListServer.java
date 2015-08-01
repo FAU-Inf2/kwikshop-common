@@ -134,7 +134,7 @@ public class ShoppingListServer implements DomainListObjectServer {
         this.sortTypeInt = sortTypeInt;
     }
 
-    @JsonProperty
+    @JsonIgnore
     public Collection<Item> getItems() {
         if(this.items == null) {
             return Collections.unmodifiableCollection(new ArrayList<Item>());

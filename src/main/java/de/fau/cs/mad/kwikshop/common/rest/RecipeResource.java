@@ -51,7 +51,7 @@ public interface RecipeResource {
     @Path("{listId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    RecipeServer updateList(@Auth User user, @PathParam("listId") int listId, RecipeServer list, @QueryParam("updateItems") boolean updateItems);
+    RecipeServer updateList(@Auth User user, @PathParam("listId") int listId, RecipeServer list);
 
     @DELETE
     @UnitOfWork
@@ -115,7 +115,14 @@ public interface RecipeResource {
 
     @GET
     @UnitOfWork
-    @Path("{listId}/deleted")
+    @Path("{listId}/items")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    List<Item> getListItems(@Auth User user, @PathParam("listId") int listId);
+
+    @GET
+    @UnitOfWork
+    @Path("{listId}/items/deleted")
     @ApiOperation(value = "Gets the items that were deleted from the list")
     List<DeletionInfo> getDeletedListItems(@Auth User user,
                                       @PathParam("listId") @ApiParam(value = "The id of the list to get deleted items for", required = true) int listId);

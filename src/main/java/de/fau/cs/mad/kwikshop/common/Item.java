@@ -172,6 +172,11 @@ public class Item {
     @DatabaseField
     private int version;
 
+    //Indicates whether this item has been deleted
+    @Column(name = "deleted")
+    @DatabaseField
+    private boolean deleted;
+
     public Item() {
         // Default no-arg constructor for generating Items, required for ORMLite
     }
@@ -399,6 +404,15 @@ public class Item {
         this.shoppingList = shoppingList;
     }
 
+
+    @JsonIgnore
+    public boolean getDeleted() {
+        return this.deleted;
+    }
+
+    public void setDeleted(boolean value) {
+        this.deleted = value;
+    }
 
     @Override
     public boolean equals(Object o) {
