@@ -5,6 +5,7 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
+import de.fau.cs.mad.kwikshop.common.DeletionInfo;
 import de.fau.cs.mad.kwikshop.common.Item;
 import de.fau.cs.mad.kwikshop.common.RecipeServer;
 import de.fau.cs.mad.kwikshop.common.User;
@@ -62,7 +63,7 @@ public interface RecipeResource {
     @Path("deleted")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Gets the Ids of the user's shopping lists that were deleted")
-    List<Integer> getDeletedLists(@Auth User user);
+    List<DeletionInfo> getDeletedLists(@Auth User user);
 
     @GET
     @UnitOfWork
@@ -116,7 +117,7 @@ public interface RecipeResource {
     @UnitOfWork
     @Path("{listId}/deleted")
     @ApiOperation(value = "Gets the items that were deleted from the list")
-    List<Integer> getDeletedListItems(@Auth User user,
+    List<DeletionInfo> getDeletedListItems(@Auth User user,
                                       @PathParam("listId") @ApiParam(value = "The id of the list to get deleted items for", required = true) int listId);
 
 }
