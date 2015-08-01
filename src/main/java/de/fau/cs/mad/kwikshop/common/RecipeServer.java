@@ -64,6 +64,7 @@ public class RecipeServer implements DomainListObjectServer {
     }
 
 
+    @Override
     @JsonProperty
     public int getId() {
         return id;

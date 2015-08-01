@@ -78,6 +78,7 @@ public class ShoppingListServer implements DomainListObjectServer {
     }
 
 
+    @Override
     @JsonProperty
     public int getId() {
         return id;
