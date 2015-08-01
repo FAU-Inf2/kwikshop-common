@@ -202,6 +202,11 @@ public class Item {
         return this.serverId;
     }
 
+    @JsonProperty("id")
+    public void setServerId(int value) {
+        this.serverId = value;
+    }
+
     @JsonProperty
     public int getOrder() {
         return order;
