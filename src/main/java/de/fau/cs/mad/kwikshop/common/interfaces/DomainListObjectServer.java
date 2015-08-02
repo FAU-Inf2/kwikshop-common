@@ -13,4 +13,8 @@ public interface DomainListObjectServer extends DomainListObject {
 
     void setDeleted(boolean value);
 
+    int getVersion();
+
+    void setVersion(int value);
+
 }

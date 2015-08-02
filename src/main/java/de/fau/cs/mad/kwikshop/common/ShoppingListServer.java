@@ -144,10 +144,12 @@ public class ShoppingListServer implements DomainListObjectServer {
     }
 
     @JsonProperty
+    @Override
     public int getVersion() {
         return this.version;
     }
 
+    @Override
     public void setVersion(int value) {
         this.version = value;
     }

@@ -110,4 +110,8 @@ public class LastLocation {
     public double getAccuracy() { return accuracy; }
 
     public void setAccuracy(double accuracy) { this.accuracy = accuracy;}
+
+    public int getServerId() {
+        return this.serverId;
+    }
 }

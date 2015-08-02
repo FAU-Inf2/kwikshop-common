@@ -2,13 +2,11 @@ package de.fau.cs.mad.kwikshop.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import javax.persistence.*;
 
-import java.sql.Blob;
 import java.util.Date;
 
 
