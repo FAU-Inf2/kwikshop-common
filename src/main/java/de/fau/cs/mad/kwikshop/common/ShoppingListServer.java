@@ -20,7 +20,7 @@ import javax.persistence.*;
         @NamedQuery(
                 name = NamedQueryConstants.SHOPPINGLIST_GET_ALL_FOR_USER,
                 query = "SELECT s FROM ShoppingListServer s WHERE s.ownerId = :" + NamedQueryConstants.USER_ID +
-                        "AND s.deleted = false"
+                        " AND s.deleted = false"
         ),
         @NamedQuery(
                 name = NamedQueryConstants.SHOPPINGLIST_GET_BY_LISTID,
@@ -31,7 +31,7 @@ import javax.persistence.*;
         @NamedQuery(
                 name = NamedQueryConstants.SHOPPINGLIST_GET_DELETED_LISTS,
                 query = "SELECT s FROM ShoppingListServer s WHERE s.ownerId = :" + NamedQueryConstants.USER_ID +
-                        "AND s.deleted = true"
+                        " AND s.deleted = true"
         )
 })
 public class ShoppingListServer implements DomainListObjectServer {
