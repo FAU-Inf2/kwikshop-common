@@ -59,7 +59,7 @@ public interface ShoppingListResource {
 
     @GET
     @UnitOfWork
-    @Path("deleted")
+    @Path("/deleted")
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Gets the Ids of the user's shopping lists that were deleted")
     List<DeletionInfo> getDeletedLists(@Auth User user);
@@ -124,6 +124,7 @@ public interface ShoppingListResource {
     @GET
     @UnitOfWork
     @Path("{listId}/items/deleted")
+    @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Gets the items that were deleted from the list")
     List<DeletionInfo> getDeletedListItems(@Auth User user,
                                       @PathParam("listId") @ApiParam(value = "The id of the list to get deleted items for", required = true) int listId);
