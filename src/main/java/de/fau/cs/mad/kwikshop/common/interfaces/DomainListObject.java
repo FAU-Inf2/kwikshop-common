@@ -5,6 +5,7 @@ import java.util.Date;
 
 import de.fau.cs.mad.kwikshop.common.Item;
 
+//TODO: Find better name for this interface
 public interface DomainListObject extends DomainObject {
 
     Collection<Item> getItems();
@@ -18,4 +19,8 @@ public interface DomainListObject extends DomainObject {
     Date getLastModifiedDate();
 
     void setLastModifiedDate(Date value);
+
+    boolean getModifiedSinceLastSync();
+
+    void setModifiedSinceLastSync(boolean value);
 }

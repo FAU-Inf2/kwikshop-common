@@ -104,11 +104,12 @@ public class Recipe implements DomainListObject {
         this.serverVersion = value;
     }
 
-
+    @Override
     public boolean getModifiedSinceLastSync() {
         return this.modifiedSinceLastSync;
     }
 
+    @Override
     public void setModifiedSinceLastSync(boolean value) {
         this.modifiedSinceLastSync = value;
     }

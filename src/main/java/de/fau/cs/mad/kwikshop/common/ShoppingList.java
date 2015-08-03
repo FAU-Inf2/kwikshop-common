@@ -138,10 +138,12 @@ public class ShoppingList implements DomainListObject {
         this.eventDate = eventDate;
     }
 
+    @Override
     public boolean getModifiedSinceLastSync() {
         return this.modifiedSinceLastSync;
     }
 
+    @Override
     public void setModifiedSinceLastSync(boolean value) {
         this.modifiedSinceLastSync = value;
     }
