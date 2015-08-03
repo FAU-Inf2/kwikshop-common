@@ -1,5 +1,6 @@
 package de.fau.cs.mad.kwikshop.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -114,4 +115,10 @@ public class LastLocation {
     public int getServerId() {
         return this.serverId;
     }
+
+    @JsonIgnore
+    public int getId() {
+        return this.id;
+    }
+
 }
