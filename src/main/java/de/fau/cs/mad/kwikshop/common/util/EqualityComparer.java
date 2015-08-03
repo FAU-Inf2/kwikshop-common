@@ -4,7 +4,7 @@ import de.fau.cs.mad.kwikshop.common.*;
 
 import java.util.Date;
 
-public class EqualityComparer {
+public abstract class EqualityComparer {
 
 
     public boolean itemEquals(Item item1, Item item2) {
@@ -53,7 +53,7 @@ public class EqualityComparer {
             return false;
         }
 
-        return group1.getServerId() == group2.getServerId();
+        return idEquals(group1, group2);
     }
 
     public boolean unitEquals(Unit unit1, Unit unit2) {
@@ -66,7 +66,7 @@ public class EqualityComparer {
             return false;
         }
 
-        return unit1.getServerId() == unit2.getServerId();
+        return idEquals(unit1, unit2);
 
     }
 
@@ -93,7 +93,8 @@ public class EqualityComparer {
             return false;
         }
 
-        return  location1.getServerId() == location2.getServerId();
+        return idEquals(location1, location2);
+
     }
 
     public boolean recipeEquals(RecipeServer recipe1, RecipeServer recipe2) {
@@ -127,5 +128,12 @@ public class EqualityComparer {
                 locationEquals(shoppingList1.getLocation(), shoppingList2.getLocation()) &&
                 dateEquals(shoppingList1.getLastModifiedDate(), shoppingList2.getLastModifiedDate());
     }
+
+
+    protected abstract boolean idEquals(Group group1, Group group2);
+
+    protected abstract boolean idEquals(Unit unit1, Unit unit2);
+
+    protected abstract boolean idEquals(LastLocation location1, LastLocation location2);
 
 }
