@@ -66,6 +66,10 @@ public class ShoppingList implements DomainListObject {
     @DatabaseField
     private int serverVersion;
 
+    @DatabaseField
+    private boolean modifiedSinceLastSync;
+
+
     public ShoppingList(int id) {
         this.id = id;
     }
@@ -132,6 +136,14 @@ public class ShoppingList implements DomainListObject {
 
     public void setCalendarEventDate(CalendarEventDate eventDate) {
         this.eventDate = eventDate;
+    }
+
+    public boolean getModifiedSinceLastSync() {
+        return this.modifiedSinceLastSync;
+    }
+
+    public void setModifiedSinceLastSync(boolean value) {
+        this.modifiedSinceLastSync = value;
     }
 
     public Collection getSharedWith() {

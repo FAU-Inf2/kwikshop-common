@@ -39,6 +39,9 @@ public class Recipe implements DomainListObject {
     @DatabaseField
     private int serverVersion;
 
+    @DatabaseField
+    private boolean modifiedSinceLastSync;
+
     public Recipe(int id) {
         this.id = id;
     }
@@ -99,6 +102,15 @@ public class Recipe implements DomainListObject {
 
     public void setServerVersion(int value) {
         this.serverVersion = value;
+    }
+
+
+    public boolean getModifiedSinceLastSync() {
+        return this.modifiedSinceLastSync;
+    }
+
+    public void setModifiedSinceLastSync(boolean value) {
+        this.modifiedSinceLastSync = value;
     }
 
     public Collection<Item> getItems() {

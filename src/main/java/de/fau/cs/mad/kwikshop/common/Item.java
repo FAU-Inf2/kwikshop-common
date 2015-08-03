@@ -175,6 +175,12 @@ public class Item {
     @DatabaseField
     private boolean deleted;
 
+    //Hibernate: Ignore field, only relevant for client
+    @Transient
+    //ORMLite
+    @DatabaseField
+    private boolean modifiedSinceLastSync;
+
     public Item() {
         // Default no-arg constructor for generating Items, required for ORMLite
     }
@@ -410,6 +416,16 @@ public class Item {
 
     public void setDeleted(boolean value) {
         this.deleted = value;
+    }
+
+
+    @JsonIgnore
+    public boolean getModifiedSinceLastSync() {
+        return modifiedSinceLastSync;
+    }
+
+    public void setModifiedSinceLastSync(boolean value) {
+        this.modifiedSinceLastSync = value;
     }
 
     @Override
