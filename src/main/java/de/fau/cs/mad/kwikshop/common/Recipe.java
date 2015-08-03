@@ -96,6 +96,7 @@ public class Recipe implements DomainListObject {
         lastModifiedDate = value;
     }
 
+    @Override
     public int getServerVersion() {
         return this.serverVersion;
     }

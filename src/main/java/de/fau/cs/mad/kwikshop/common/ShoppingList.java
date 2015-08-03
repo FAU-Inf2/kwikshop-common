@@ -114,6 +114,7 @@ public class ShoppingList implements DomainListObject {
         lastModifiedDate = value;
     }
 
+    @Override
     public int getServerVersion() {
         return this.serverVersion;
     }

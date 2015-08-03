@@ -23,4 +23,6 @@ public interface DomainListObject extends DomainObject {
     boolean getModifiedSinceLastSync();
 
     void setModifiedSinceLastSync(boolean value);
+
+    int getServerVersion();
 }
