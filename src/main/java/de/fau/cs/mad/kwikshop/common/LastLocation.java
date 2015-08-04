@@ -112,6 +112,7 @@ public class LastLocation {
 
     public void setAccuracy(double accuracy) { this.accuracy = accuracy;}
 
+    @JsonProperty("id")
     public int getServerId() {
         return this.serverId;
     }
