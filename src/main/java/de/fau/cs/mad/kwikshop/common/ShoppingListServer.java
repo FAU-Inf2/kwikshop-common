@@ -87,6 +87,12 @@ public class ShoppingListServer implements DomainListObjectServer {
         this.id = id;
     }
 
+    public ShoppingListServer(int id, Collection<Item> items) {
+        this.id = id;
+        this.items = items;
+    }
+
+
     public ShoppingListServer() {
         // Default no-arg constructor for generating Items, required for ORMLite
     }

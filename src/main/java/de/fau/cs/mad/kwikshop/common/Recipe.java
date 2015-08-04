@@ -56,10 +56,12 @@ public class Recipe implements DomainListObject {
         return id;
     }
 
+    @Override
     public int getServerId() {
         return this.serverId;
     }
 
+    @Override
     public void setServerId(int value) {
         this.serverId = value;
     }
@@ -101,6 +103,7 @@ public class Recipe implements DomainListObject {
         return this.serverVersion;
     }
 
+    @Override
     public void setServerVersion(int value) {
         this.serverVersion = value;
     }

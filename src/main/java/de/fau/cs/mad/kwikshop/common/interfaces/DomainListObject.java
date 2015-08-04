@@ -25,4 +25,10 @@ public interface DomainListObject extends DomainObject {
     void setModifiedSinceLastSync(boolean value);
 
     int getServerVersion();
+
+    void setServerVersion(int value);
+
+    int getServerId();
+
+    void setServerId(int value);
 }

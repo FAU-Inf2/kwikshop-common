@@ -84,10 +84,12 @@ public class ShoppingList implements DomainListObject {
     }
 
 
+    @Override
     public int getServerId() {
         return this.serverId;
     }
 
+    @Override
     public void setServerId(int value) {
         this.serverId = serverId;
     }
@@ -119,6 +121,7 @@ public class ShoppingList implements DomainListObject {
         return this.serverVersion;
     }
 
+    @Override
     public void setServerVersion(int value) {
         this.serverVersion = value;
     }

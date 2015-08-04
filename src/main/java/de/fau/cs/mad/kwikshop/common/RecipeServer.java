@@ -72,6 +72,11 @@ public class RecipeServer implements DomainListObjectServer {
         this.id = id;
     }
 
+    public RecipeServer(int id, Collection<Item> items) {
+        this.id = id;
+        this.items = items;
+    }
+
     public RecipeServer() {
         // Default no-arg constructor for generating Items, required for ORMLite
 
