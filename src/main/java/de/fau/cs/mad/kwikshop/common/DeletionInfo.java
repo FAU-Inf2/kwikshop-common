@@ -2,10 +2,12 @@ package de.fau.cs.mad.kwikshop.common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import de.fau.cs.mad.kwikshop.common.interfaces.DomainObject;
+
 /**
  * Stores info about the deletion of a object
  */
-public class DeletionInfo {
+public class DeletionInfo implements DomainObject {
 
     private int id;
     private int version;
@@ -26,6 +28,7 @@ public class DeletionInfo {
     /**
      * Gets the id of the object that was deleted
      */
+    @Override
     @JsonProperty("id")
     public int getId() {
         return this.id;
