@@ -91,7 +91,7 @@ public class ShoppingList implements DomainListObject {
 
     @Override
     public void setServerId(int value) {
-        this.serverId = serverId;
+        this.serverId = value;
     }
 
     public String getName() {
