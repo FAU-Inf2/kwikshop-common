@@ -36,7 +36,9 @@ public enum ResourceId {
     Unit_Cup(32),
     Unit_Tablespoon(33),
     Unit_short_Tablespoon(34),
-    Unit_Can(35);
+    Unit_Can(35),
+    Unit_Teaspoon(36),
+    Unit_short_Teaspoon(37);
 
     private final int id;
 
