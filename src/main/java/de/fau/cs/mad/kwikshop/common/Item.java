@@ -19,8 +19,8 @@ public class Item {
     public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";
     public static final String FOREIGN_RECIPE_FIELD_NAME = "recipe";
 
-
-
+    //Hibernate: Ignore client data
+    @Transient
     private boolean isChecked = false;
 
     //Hibernate: Ignore  client Id
@@ -452,6 +452,7 @@ public class Item {
         return id;
     }
 
+    @JsonIgnore
     public boolean isChecked() {
         return isChecked;
     }
