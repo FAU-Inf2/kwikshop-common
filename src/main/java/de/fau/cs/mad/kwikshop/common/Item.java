@@ -176,7 +176,7 @@ public class Item {
 
     //Indicates whether this item has been deleted
     @Column(name = "deleted")
-    @DatabaseField
+    // Ignore on client
     private boolean deleted;
 
     //Hibernate: Ignore field, only relevant for client
@@ -204,6 +204,7 @@ public class Item {
         this.location = item.location;
         this.imageItem = item.imageItem;
     }
+
 
 
     @JsonIgnore
