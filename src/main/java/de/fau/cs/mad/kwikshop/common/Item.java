@@ -19,6 +19,10 @@ public class Item {
     public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";
     public static final String FOREIGN_RECIPE_FIELD_NAME = "recipe";
 
+
+
+    private boolean isChecked = false;
+
     //Hibernate: Ignore  client Id
     @Transient
     //ORMLite
@@ -448,4 +452,11 @@ public class Item {
         return id;
     }
 
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
 }
