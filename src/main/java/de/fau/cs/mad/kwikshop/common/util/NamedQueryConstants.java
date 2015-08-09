@@ -8,9 +8,13 @@ public class NamedQueryConstants {
 
     public static final String SHOPPINGLIST_GET_DELETED_LISTS = "ShoppingList.getDeletedLists";
 
+    public static final String SHOPPINGLIST_GET_BY_SHARINGCODE = "ShoppingList.getBySharingCode";
+
     public static final String USER_ID = "userId";
 
     public static final String LIST_ID = "listId";
+
+    public static final String SHARING_CODE = "sharingCode";
 
 
     public static final String RECIPE_GET_ALL_FOR_USER = "Recipe.getAllForUser";

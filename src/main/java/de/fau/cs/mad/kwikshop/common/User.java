@@ -1,6 +1,10 @@
 package de.fau.cs.mad.kwikshop.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -86,4 +90,12 @@ public class User {
         firstName = user.firstName;
         lastName = user.lastName;
     }*/
+
+    @ManyToMany(mappedBy = "sharedWith")
+    private Set<ShoppingListServer> sharedShoppingLists = new HashSet<ShoppingListServer>();
+
+    @JsonIgnore
+    public Set<ShoppingListServer> getSharedShoppingLists() {
+        return sharedShoppingLists;
+    }
 }

@@ -32,7 +32,12 @@ import javax.persistence.*;
                 name = NamedQueryConstants.SHOPPINGLIST_GET_DELETED_LISTS,
                 query = "SELECT s FROM ShoppingListServer s WHERE s.ownerId = :" + NamedQueryConstants.USER_ID +
                         " AND s.deleted = true"
-        )
+        ),
+        @NamedQuery(
+                name = NamedQueryConstants.SHOPPINGLIST_GET_BY_SHARINGCODE,
+                query = "SELECT s FROM ShoppingListServer s WHERE s.sharingCode = :" + NamedQueryConstants.SHARING_CODE  +
+                        " AND s.deleted = false"
+        ),
 })
 public class ShoppingListServer implements DomainListObjectServer {
 
@@ -82,6 +87,9 @@ public class ShoppingListServer implements DomainListObjectServer {
 
     @Column(name = "deleted")
     private boolean deleted;
+
+    @Column(name = "sharingCode")
+    private String sharingCode;
 
     public ShoppingListServer(int id) {
         this.id = id;
@@ -208,6 +216,29 @@ public class ShoppingListServer implements DomainListObjectServer {
             }
         }
         return false;
+    }
+
+    @JsonIgnore
+    public String getSharingCode() {
+        if(sharingCode == null)
+            sharingCode = UUID.randomUUID().toString();
+
+        return sharingCode;
+    }
+
+    @ManyToMany(
+            targetEntity=User.class,
+            cascade={CascadeType.ALL}
+    )
+    private Set<User> sharedWith = new HashSet<User>();
+
+    @JsonIgnore
+    public Collection getSharedWith() {
+        return sharedWith;
+    }
+
+    public void shareWith(User user) {
+        sharedWith.add(user);
     }
 
     public int size() {

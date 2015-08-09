@@ -70,6 +70,16 @@ public interface ShoppingListResource {
     @Produces(MediaType.APPLICATION_JSON)
     Item getListItem(@Auth User user, @PathParam("listId") int listId, @PathParam("itemId") int itemId);
 
+    @GET
+    @UnitOfWork
+    @Path("{listId}/sharingCode")
+    String getSharingCode(@Auth User user, @PathParam("listId") int listId);
+
+    @GET
+    @UnitOfWork
+    @Path("share/{sharingCode}")
+    @Produces(MediaType.TEXT_PLAIN)
+    String share(@Auth User user, @PathParam("sharingCode") String sharingCode);
 
     @PUT
     @UnitOfWork
