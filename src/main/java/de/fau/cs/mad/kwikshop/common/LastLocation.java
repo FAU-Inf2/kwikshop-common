@@ -117,6 +117,11 @@ public class LastLocation {
         return this.serverId;
     }
 
+    @JsonProperty("id")
+    public void setServerId(int value) {
+        this.serverId = value;
+    }
+
     @JsonIgnore
     public int getId() {
         return this.id;
