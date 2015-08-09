@@ -81,6 +81,12 @@ public interface ShoppingListResource {
     @Produces(MediaType.TEXT_PLAIN)
     String share(@Auth User user, @PathParam("sharingCode") String sharingCode);
 
+    @GET
+    @UnitOfWork
+    @Path("/sharedLists")
+    @Produces(MediaType.APPLICATION_JSON)
+    List<ShoppingListServer> getSharedLists(@Auth User user);
+
     @PUT
     @UnitOfWork
     @Path("{listId}/newItem")
