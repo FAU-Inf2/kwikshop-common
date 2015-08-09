@@ -75,7 +75,7 @@ public interface ShoppingListResource {
     @Path("{listId}/sharingCode")
     String getSharingCode(@Auth User user, @PathParam("listId") int listId);
 
-    @GET
+    @POST
     @UnitOfWork
     @Path("share/{sharingCode}")
     @Produces(MediaType.TEXT_PLAIN)
