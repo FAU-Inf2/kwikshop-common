@@ -4,12 +4,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 
 import javax.persistence.*;
 
 //Hibernate
 @Entity(name = "Location")
 @Table(name = "Location")
+@NamedQueries({
+        @NamedQuery(
+                name = NamedQueryConstants.LOCATION_GET_BY_ID,
+                query = "SELECT l FROM Location l WHERE l.ownerId = :" + NamedQueryConstants.USER_ID +
+                        " AND l.serverId = :" + NamedQueryConstants.LOCATION_ID
+        )
+})
 //ORMLite
 @DatabaseTable(tableName = "location")
 public class LastLocation {
@@ -65,6 +73,8 @@ public class LastLocation {
     @DatabaseField
     private double accuracy;
 
+    @Column(name="ownerId")
+    private String ownerId;
 
 
     @JsonProperty
@@ -127,4 +137,14 @@ public class LastLocation {
         return this.id;
     }
 
+
+    @JsonIgnore
+    public String getOwnerId() {
+        return this.ownerId;
+    }
+
+    @JsonIgnore
+    public void setOwnerId(String value) {
+        this.ownerId = value;
+    }
 }

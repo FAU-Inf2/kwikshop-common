@@ -22,4 +22,19 @@ public class NamedQueryConstants {
     public static final String RECIPE_GET_BY_LISTID = "Recipe.getByListId";
 
     public static final String RECIPE_GET_DELETED_LISTS = "Recipe.getDeletedLists";
+
+
+    public static final String UNIT_GET_BY_ID = "Unit.getById";
+
+    public static final String UNIT_ID = "unitId";
+
+
+    public static final String GROUP_GET_BY_ID = "Group.getById";
+
+    public static final String GROUP_ID ="groupId";
+
+
+    public static final String LOCATION_GET_BY_ID = "Location.getById";
+
+    public static final String LOCATION_ID ="locationId";
 }

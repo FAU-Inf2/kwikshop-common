@@ -10,6 +10,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import de.fau.cs.mad.kwikshop.common.localization.ResourceId;
 import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdDeserializer;
 import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdSerializer;
+import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 
 import javax.persistence.*;
 
@@ -17,6 +18,13 @@ import javax.persistence.*;
 //Hibernate
 @Entity(name = "Group")
 @Table(name = "productGroup")
+@NamedQueries({
+        @NamedQuery(
+                name = NamedQueryConstants.GROUP_GET_BY_ID,
+                query = "SELECT g FROM Group g WHERE g.ownerId = :" + NamedQueryConstants.USER_ID +
+                        " AND g.serverId = :" + NamedQueryConstants.GROUP_ID
+        )
+})
 //ORMLite
 @DatabaseTable(tableName = "group")
 public class Group {
@@ -45,6 +53,10 @@ public class Group {
   @Enumerated(EnumType.STRING)
   @DatabaseField(dataType = DataType.ENUM_STRING)
   private ResourceId resourceId;
+
+  @Column(name="ownerId")
+  private String ownerId;
+
 
   public Group() {
       // Default no-arg constructor for generating Groups, required for ORMLite
@@ -93,6 +105,16 @@ public class Group {
   @JsonDeserialize(using = ResourceIdDeserializer.class)
   public void setResourceId(ResourceId value) {
     this.resourceId = value;
+  }
+
+  @JsonIgnore
+  public String getOwnerId() {
+    return this.ownerId;
+  }
+
+  @JsonIgnore
+  public void setOwnerId(String value) {
+    this.ownerId = value;
   }
 
 

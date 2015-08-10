@@ -13,9 +13,17 @@ import javax.persistence.*;
 import de.fau.cs.mad.kwikshop.common.localization.ResourceId;
 import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdDeserializer;
 import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdSerializer;
+import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 
 //Hibernate
 @Entity(name = "Unit")
+@NamedQueries({
+        @NamedQuery(
+                name = NamedQueryConstants.UNIT_GET_BY_ID,
+                query = "SELECT u FROM Unit u WHERE u.ownerId = :" + NamedQueryConstants.USER_ID +
+                        " AND u.serverId = :" + NamedQueryConstants.UNIT_ID
+        )
+})
 //ORMLite
 @DatabaseTable(tableName = "unit")
 public class Unit {
@@ -55,6 +63,10 @@ public class Unit {
   @DatabaseField(dataType = DataType.ENUM_STRING)
   private ResourceId shortNameResourceId;
 
+  @Column(name="ownerId")
+  private String ownerId;
+
+
 
   public Unit(){
       // Default no-arg constructor for generating Units, required for ORMLite
@@ -87,7 +99,7 @@ public class Unit {
 
   @JsonProperty("id")
   public void setServerId(int value) {
-    this.serverId = serverId;
+    this.serverId = value;
   }
 
   @JsonProperty
@@ -121,6 +133,17 @@ public class Unit {
   @JsonDeserialize(using = ResourceIdDeserializer.class)
   public void setShortNameResourceId(ResourceId value) {
     this.shortNameResourceId = value;
+  }
+
+
+  @JsonIgnore
+  public String getOwnerId() {
+    return this.ownerId;
+  }
+
+  @JsonIgnore
+  public void setOwnerId(String value) {
+    this.ownerId = value;
   }
 
 
