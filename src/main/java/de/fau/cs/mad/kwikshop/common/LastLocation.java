@@ -73,7 +73,7 @@ public class LastLocation {
     @DatabaseField
     private double accuracy;
 
-    @Column(name="ownerId")
+    //@Column(name="ownerId")
     private String ownerId;
 
 

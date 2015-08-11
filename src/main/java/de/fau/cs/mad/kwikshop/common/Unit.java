@@ -63,7 +63,7 @@ public class Unit {
   @DatabaseField(dataType = DataType.ENUM_STRING)
   private ResourceId shortNameResourceId;
 
-  @Column(name="ownerId")
+  //@Column(name="ownerId")
   private String ownerId;
 
 

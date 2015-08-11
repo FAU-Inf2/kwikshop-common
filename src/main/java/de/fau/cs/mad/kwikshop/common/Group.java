@@ -54,7 +54,7 @@ public class Group {
   @DatabaseField(dataType = DataType.ENUM_STRING)
   private ResourceId resourceId;
 
-  @Column(name="ownerId")
+  //@Column(name="ownerId")
   private String ownerId;
 
 
