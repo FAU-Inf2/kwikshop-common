@@ -43,7 +43,7 @@ public class Item {
     @Column(name="itemOrder")
     //ORMLite
     @DatabaseField
-    private int order = -1;
+    private int order = Integer.MAX_VALUE;
 
     //Hibernate
     @Column(name="isBought")
