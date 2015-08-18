@@ -9,6 +9,8 @@ import de.fau.cs.mad.kwikshop.common.DeletionInfo;
 import de.fau.cs.mad.kwikshop.common.Item;
 import de.fau.cs.mad.kwikshop.common.ShoppingListServer;
 import de.fau.cs.mad.kwikshop.common.User;
+import de.fau.cs.mad.kwikshop.common.rest.responses.SharingCode;
+import de.fau.cs.mad.kwikshop.common.rest.responses.SharingResponse;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 
@@ -73,13 +75,14 @@ public interface ShoppingListResource {
     @GET
     @UnitOfWork
     @Path("{listId}/sharingCode")
-    String getSharingCode(@Auth User user, @PathParam("listId") int listId);
+    @Produces(MediaType.APPLICATION_JSON)
+    SharingCode getSharingCode(@Auth User user, @PathParam("listId") int listId);
 
     @POST
     @UnitOfWork
     @Path("share/{sharingCode}")
-    @Produces(MediaType.TEXT_PLAIN)
-    String share(@Auth User user, @PathParam("sharingCode") String sharingCode);
+    @Produces(MediaType.APPLICATION_JSON)
+    SharingResponse share(@Auth User user, @PathParam("sharingCode") String sharingCode);
 
     @GET
     @UnitOfWork
