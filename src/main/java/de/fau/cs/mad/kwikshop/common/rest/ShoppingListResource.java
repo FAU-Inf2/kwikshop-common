@@ -80,7 +80,7 @@ public interface ShoppingListResource {
 
     @POST
     @UnitOfWork
-    @Path("share/{sharingCode}")
+    @Path("/share/{sharingCode}")
     @Produces(MediaType.APPLICATION_JSON)
     SharingResponse share(@Auth User user, @PathParam("sharingCode") String sharingCode);
 
