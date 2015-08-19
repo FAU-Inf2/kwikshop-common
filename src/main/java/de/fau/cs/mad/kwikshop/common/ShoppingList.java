@@ -69,6 +69,9 @@ public class ShoppingList implements DomainListObject {
     @DatabaseField
     private boolean modifiedSinceLastSync;
 
+    @DatabaseField
+    private String ownerId;
+
 
     public ShoppingList(int id) {
         this.id = id;
@@ -191,6 +194,14 @@ public class ShoppingList implements DomainListObject {
             }
         }
         return false;
+    }
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
     public int size() {
