@@ -164,6 +164,10 @@ public class ShoppingList implements DomainListObject {
         return this.predefinedId;
     }
 
+    public void setPredefinedId(int predefinedId) {
+        this.predefinedId = predefinedId;
+    }
+
     public Collection getSharedWith() {
         return sharedWith;
     }

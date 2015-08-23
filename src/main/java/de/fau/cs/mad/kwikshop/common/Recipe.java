@@ -128,6 +128,10 @@ public class Recipe implements DomainListObject {
         return this.predefinedId;
     }
 
+    public void setPredefinedId(int value) {
+        this.predefinedId = value;
+    }
+
     public Collection<Item> getItems() {
 
         if(this.items == null) {
