@@ -24,7 +24,7 @@ import javax.persistence.*;
         @NamedQuery(
                 name = NamedQueryConstants.GROUP_GET_BY_ID,
                 query = "SELECT g FROM Group g WHERE g.ownerId = :" + NamedQueryConstants.USER_ID +
-                        " AND g.serverId = :" + NamedQueryConstants.GROUP_ID
+                        " AND g.id = :" + NamedQueryConstants.GROUP_ID
         )
 })
 //ORMLite
