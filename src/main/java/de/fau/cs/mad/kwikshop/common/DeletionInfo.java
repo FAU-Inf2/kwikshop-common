@@ -12,16 +12,17 @@ public class DeletionInfo implements DomainObject {
 
     private int id;
     private int version;
-
+    private int predefinedId;
 
 
     public DeletionInfo() {
 
     }
 
-    public DeletionInfo(int id, int version) {
+    public DeletionInfo(int id, int version, int predefinedId) {
         this.id = id;
         this.version = version;
+        this.predefinedId = predefinedId;
     }
 
 
@@ -61,8 +62,13 @@ public class DeletionInfo implements DomainObject {
     }
 
 
-    @JsonIgnore
+    @JsonProperty("predefinedId")
+    @Override
     public int getPredefinedId() {
-        return 0;
+        return this.predefinedId;
+    }
+
+    public void setPredefinedId(int value) {
+        this.predefinedId = predefinedId;
     }
 }
