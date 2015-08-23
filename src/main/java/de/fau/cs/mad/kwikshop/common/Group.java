@@ -7,6 +7,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import de.fau.cs.mad.kwikshop.common.interfaces.DomainObject;
 import de.fau.cs.mad.kwikshop.common.localization.ResourceId;
 import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdDeserializer;
 import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdSerializer;
@@ -27,7 +29,7 @@ import javax.persistence.*;
 })
 //ORMLite
 @DatabaseTable(tableName = "group")
-public class Group {
+public class Group implements DomainObject {
 
   //Hibernate: ignore client id
   @Transient
@@ -54,6 +56,13 @@ public class Group {
   @DatabaseField(dataType = DataType.ENUM_STRING)
   private ResourceId resourceId;
 
+  //Hibernate
+  @Column(name = "predefinedId")
+  //ORMLite
+  @DatabaseField(columnName = "predefinedId")
+  private int predefinedId;
+
+
   //@Column(name="ownerId")
   private String ownerId;
 
@@ -69,12 +78,23 @@ public class Group {
 
 
   @JsonIgnore
+  @Override
   public int getId() {
     return id;
   }
 
   public void setId(int id) {
     this.id = id;
+  }
+
+  @JsonProperty
+  @Override
+  public int getPredefinedId() {
+    return this.predefinedId;
+  }
+
+  public void setPredefinedId(int value) {
+    this.predefinedId = value;
   }
 
   @JsonProperty("id")

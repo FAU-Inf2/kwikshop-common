@@ -10,6 +10,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import javax.persistence.*;
 
+import de.fau.cs.mad.kwikshop.common.interfaces.DomainObject;
 import de.fau.cs.mad.kwikshop.common.localization.ResourceId;
 import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdDeserializer;
 import de.fau.cs.mad.kwikshop.common.serialization.ResourceIdSerializer;
@@ -26,7 +27,7 @@ import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 })
 //ORMLite
 @DatabaseTable(tableName = "unit")
-public class Unit {
+public class Unit implements DomainObject{
 
   //Hibernate: ignore client id
   @Transient
@@ -66,6 +67,12 @@ public class Unit {
   //@Column(name="ownerId")
   private String ownerId;
 
+  //Hibernate
+  @Column(name = "predefinedId")
+  //ORMLite
+  @DatabaseField(columnName = "predefinedId")
+  private int predefinedId;
+
 
 
   public Unit(){
@@ -84,12 +91,23 @@ public class Unit {
   }
 
   @JsonIgnore
+  @Override
   public int getId() {
     return id;
   }
 
   public void setId(int id) {
     this.id = id;
+  }
+
+  @Override
+  @JsonProperty
+  public int getPredefinedId() {
+    return this.predefinedId;
+  }
+
+  public void setPredefinedId(int value) {
+    this.predefinedId = value;
   }
 
   @JsonProperty("id")

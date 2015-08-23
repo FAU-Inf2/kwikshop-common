@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import de.fau.cs.mad.kwikshop.common.interfaces.DomainObject;
 import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 
 import javax.persistence.*;
@@ -20,7 +22,7 @@ import javax.persistence.*;
 })
 //ORMLite
 @DatabaseTable(tableName = "location")
-public class LastLocation {
+public class LastLocation implements DomainObject {
 
     //Hibernate : ignore client id
     @Transient
@@ -133,6 +135,7 @@ public class LastLocation {
     }
 
     @JsonIgnore
+    @Override
     public int getId() {
         return this.id;
     }
@@ -146,5 +149,11 @@ public class LastLocation {
     @JsonIgnore
     public void setOwnerId(String value) {
         this.ownerId = value;
+    }
+
+    @JsonIgnore
+    @Override
+    public int getPredefinedId() {
+        return 0; // always return o (there are no predefined locations)
     }
 }

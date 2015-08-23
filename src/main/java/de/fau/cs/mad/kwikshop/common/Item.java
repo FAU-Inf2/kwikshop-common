@@ -9,12 +9,14 @@ import javax.persistence.*;
 
 import java.util.Date;
 
+import de.fau.cs.mad.kwikshop.common.interfaces.DomainObject;
+
 
 //Hibernate annotations (server side)
 @Entity(name = "Item")
 //ORMLite annotations (android client)
 @DatabaseTable(tableName = "item")
-public class Item {
+public class Item implements DomainObject {
 
     public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";
     public static final String FOREIGN_RECIPE_FIELD_NAME = "recipe";
@@ -182,6 +184,12 @@ public class Item {
     @DatabaseField
     private boolean modifiedSinceLastSync;
 
+    //Hibernate
+    @Column(name = "predefinedId")
+    //ORMLite
+    @DatabaseField(columnName = "predefinedId")
+    private int predefinedId;
+
     public Item() {
         // Default no-arg constructor for generating Items, required for ORMLite
     }
@@ -205,8 +213,19 @@ public class Item {
 
 
     @JsonIgnore
+    @Override
     public int getId() {
         return id;
+    }
+
+    @JsonProperty
+    @Override
+    public int getPredefinedId() {
+        return this.predefinedId;
+    }
+
+    public void setPredefinedId(int value) {
+        this.predefinedId = value;
     }
 
     // TODO: REMOVE THIS, only for testing. IDs should be read only
