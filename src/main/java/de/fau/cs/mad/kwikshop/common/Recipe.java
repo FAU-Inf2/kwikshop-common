@@ -42,6 +42,11 @@ public class Recipe implements DomainListObject {
     @DatabaseField
     private boolean modifiedSinceLastSync;
 
+    @DatabaseField
+    private int predefinedId;
+
+
+
     public Recipe(int id) {
         this.id = id;
     }
@@ -118,6 +123,11 @@ public class Recipe implements DomainListObject {
         this.modifiedSinceLastSync = value;
     }
 
+    @Override
+    public int getPredefinedId() {
+        return this.predefinedId;
+    }
+
     public Collection<Item> getItems() {
 
         if(this.items == null) {
@@ -164,6 +174,7 @@ public class Recipe implements DomainListObject {
     public int size() {
         return items.size();
     }
+
 
 
 }

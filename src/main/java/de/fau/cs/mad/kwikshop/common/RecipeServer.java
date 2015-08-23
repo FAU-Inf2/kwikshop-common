@@ -67,6 +67,9 @@ public class RecipeServer implements DomainListObjectServer {
     @Column(name = "deleted")
     private boolean deleted;
 
+    @Column(name = "predefinedId")
+    private int predefinedId;
+
 
     public RecipeServer(int id) {
         this.id = id;
@@ -148,6 +151,15 @@ public class RecipeServer implements DomainListObjectServer {
         this.deleted = value;
     }
 
+    @JsonProperty
+    @Override
+    public int getPredefinedId() {
+        return this.predefinedId;
+    }
+
+    public void setPredefinedId(int value) {
+        this.predefinedId = value;
+    }
 
     @JsonIgnore
     public Collection<Item> getItems() {

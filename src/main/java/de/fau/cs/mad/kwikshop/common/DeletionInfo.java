@@ -1,5 +1,6 @@
 package de.fau.cs.mad.kwikshop.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import de.fau.cs.mad.kwikshop.common.interfaces.DomainObject;
@@ -59,4 +60,9 @@ public class DeletionInfo implements DomainObject {
         this.version = value;
     }
 
+
+    @JsonIgnore
+    public int getPredefinedId() {
+        return 0;
+    }
 }

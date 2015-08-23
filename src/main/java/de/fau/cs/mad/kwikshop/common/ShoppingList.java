@@ -72,6 +72,10 @@ public class ShoppingList implements DomainListObject {
     @DatabaseField
     private String ownerId;
 
+    @DatabaseField
+    private int predefinedId;
+
+
 
     public ShoppingList(int id) {
         this.id = id;
@@ -155,6 +159,11 @@ public class ShoppingList implements DomainListObject {
         this.modifiedSinceLastSync = value;
     }
 
+    @Override
+    public int getPredefinedId() {
+        return this.predefinedId;
+    }
+
     public Collection getSharedWith() {
         return sharedWith;
     }
@@ -207,6 +216,5 @@ public class ShoppingList implements DomainListObject {
     public int size() {
         return items.size();
     }
-
 
 }
