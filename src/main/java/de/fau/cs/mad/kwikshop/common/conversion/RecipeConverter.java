@@ -23,6 +23,7 @@ public class RecipeConverter implements ObjectConverter<Recipe, RecipeServer>{
         serverRecipe.setScaleFactor(clientRecipe.getScaleFactor());
         serverRecipe.setScaleName(clientRecipe.getScaleName());
         serverRecipe.setLastModifiedDate(clientRecipe.getLastModifiedDate());
+        serverRecipe.setPredefinedId(clientRecipe.getPredefinedId());
 
         return serverRecipe;
     }

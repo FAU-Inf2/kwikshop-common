@@ -24,6 +24,7 @@ public class ShoppingListConverter implements ObjectConverter<ShoppingList, Shop
         serverShoppingList.setSortTypeInt(clientShoppingList.getSortTypeInt());
         serverShoppingList.setLocation(clientShoppingList.getLocation());
         serverShoppingList.setLastModifiedDate(clientShoppingList.getLastModifiedDate());
+        serverShoppingList.setPredefinedId(clientShoppingList.getPredefinedId());
 
         return serverShoppingList;
     }
