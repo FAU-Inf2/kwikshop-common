@@ -31,10 +31,15 @@ public class NamedQueryConstants {
 
     public static final String GROUP_GET_BY_ID = "Group.getById";
 
-    public static final String GROUP_ID ="groupId";
+    public static final String GROUP_ID = "groupId";
 
 
     public static final String LOCATION_GET_BY_ID = "Location.getById";
 
-    public static final String LOCATION_ID ="locationId";
+    public static final String LOCATION_ID = "locationId";
+
+
+    public static final String BOUGHTITEM_GET_BY_NAME = "BoughtItem.getByName";
+
+    public static final String BOUGHTITEM_NAME = "boughtItemName";
 }
