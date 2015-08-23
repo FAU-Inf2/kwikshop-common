@@ -80,14 +80,15 @@ public class Unit implements DomainObject{
   }
 
 
-  public Unit(String name, ResourceId resourceId) {
-    this(name, resourceId, null);
+  public Unit(String name, ResourceId resourceId, PredefinedId predefinedId) {
+    this(name, resourceId, null, predefinedId);
   }
 
-  public Unit(String name, ResourceId resourceId, ResourceId shortNameResourceId) {
+  public Unit(String name, ResourceId resourceId, ResourceId shortNameResourceId, PredefinedId predefinedId) {
     setName(name);
     setResourceId(resourceId);
     setShortNameResourceId(shortNameResourceId);
+    setPredefinedId(predefinedId.toInt());
   }
 
   @JsonIgnore

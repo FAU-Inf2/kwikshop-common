@@ -71,9 +71,10 @@ public class Group implements DomainObject {
       // Default no-arg constructor for generating Groups, required for ORMLite
   }
 
-  public Group(String name, ResourceId resourceId) {
+  public Group(String name, ResourceId resourceId, PredefinedId predefinedId) {
     setName(name);
     setResourceId(resourceId);
+    setPredefinedId(predefinedId.toInt());
   }
 
 
