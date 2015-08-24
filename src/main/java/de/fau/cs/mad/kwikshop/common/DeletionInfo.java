@@ -68,7 +68,8 @@ public class DeletionInfo implements DomainObject {
         return this.predefinedId;
     }
 
+    @JsonProperty("predefinedId")
     public void setPredefinedId(int value) {
-        this.predefinedId = predefinedId;
+        this.predefinedId = value;
     }
 }
