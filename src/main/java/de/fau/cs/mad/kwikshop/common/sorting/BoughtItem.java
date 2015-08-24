@@ -49,4 +49,20 @@ public class BoughtItem {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this)
+            return true;
+        if(obj == null || obj.getClass() != this.getClass())
+            return false;
+
+        BoughtItem boughtItem = (BoughtItem) obj;
+        return boughtItem.getName().equals(this.getName());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }
