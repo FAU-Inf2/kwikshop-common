@@ -42,4 +42,11 @@ public class NamedQueryConstants {
     public static final String BOUGHTITEM_GET_BY_NAME = "BoughtItem.getByName";
 
     public static final String BOUGHTITEM_NAME = "boughtItemName";
+
+
+    public static final String EDGE_GET_BY_FROMTO = "Edge.getByFromTo";
+
+    public static final String EDGE_FROM_NAME = "edgeFromName";
+    public static final String EDGE_TO_NAME = "edgeToName";
+
 }

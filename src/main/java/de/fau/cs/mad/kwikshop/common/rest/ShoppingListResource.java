@@ -9,6 +9,8 @@ import de.fau.cs.mad.kwikshop.common.DeletionInfo;
 import de.fau.cs.mad.kwikshop.common.Item;
 import de.fau.cs.mad.kwikshop.common.ShoppingListServer;
 import de.fau.cs.mad.kwikshop.common.User;
+import de.fau.cs.mad.kwikshop.common.sorting.BoughtItem;
+import de.fau.cs.mad.kwikshop.common.sorting.ShoppingListOrder;
 import de.fau.cs.mad.kwikshop.common.rest.responses.SharingCode;
 import de.fau.cs.mad.kwikshop.common.rest.responses.SharingResponse;
 import io.dropwizard.auth.Auth;
@@ -147,5 +149,14 @@ public interface ShoppingListResource {
     @ApiOperation(value = "Gets the items that were deleted from the list")
     List<DeletionInfo> getDeletedListItems(@Auth User user,
                                       @PathParam("listId") @ApiParam(value = "The id of the list to get deleted items for", required = true) int listId);
+
+    @POST
+    @UnitOfWork
+    @Path("/boughtItems/{supermarketPlaceId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    void postBoughtItems(
+            @Auth User user,
+            @PathParam("supermarketPlaceId") @ApiParam(value = "The placeId of the supermarket the items were bought at", required = true) String supermarketPlaceId,
+            @ApiParam(value = "List of BoughtItems", required = true) List<BoughtItem> boughtItems);
 
 }

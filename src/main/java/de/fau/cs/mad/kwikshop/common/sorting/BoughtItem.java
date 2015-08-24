@@ -1,5 +1,6 @@
 package de.fau.cs.mad.kwikshop.common.sorting;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -22,8 +23,21 @@ public class BoughtItem {
     @Column(name="name", unique=true, nullable=false)
     private String name;
 
+    public BoughtItem() {
+
+    }
+
     public BoughtItem(String name) {
         setName(name);
+    }
+
+    @JsonIgnore
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @JsonProperty
