@@ -3,6 +3,7 @@ package de.fau.cs.mad.kwikshop.common.interfaces;
 import java.util.Collection;
 import java.util.Date;
 
+import de.fau.cs.mad.kwikshop.android.viewmodel.ItemViewModel;
 import de.fau.cs.mad.kwikshop.common.Item;
 
 //TODO: Find better name for this interface
