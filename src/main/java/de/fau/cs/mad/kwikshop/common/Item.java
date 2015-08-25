@@ -16,9 +16,9 @@ import de.fau.cs.mad.kwikshop.common.interfaces.DomainObject;
 @Entity(name = "Item")
 //ORMLite annotations (android client)
 @DatabaseTable(tableName = "item")
-public class Item implements DomainObject {
+public class Item implements DomainObject  {
 
-    public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";
+    public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";/*///*/
     public static final String FOREIGN_RECIPE_FIELD_NAME = "recipe";
 
 
