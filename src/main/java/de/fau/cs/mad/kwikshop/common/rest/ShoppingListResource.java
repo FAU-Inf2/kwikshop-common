@@ -12,6 +12,7 @@ import de.fau.cs.mad.kwikshop.common.User;
 import de.fau.cs.mad.kwikshop.common.sorting.BoughtItem;
 import de.fau.cs.mad.kwikshop.common.rest.responses.SharingCode;
 import de.fau.cs.mad.kwikshop.common.rest.responses.SharingResponse;
+import de.fau.cs.mad.kwikshop.common.sorting.ItemOrderWrapper;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 
@@ -151,11 +152,8 @@ public interface ShoppingListResource {
 
     @POST
     @UnitOfWork
-    @Path("/boughtItems/{supermarketPlaceId}")
+    @Path("/boughtItems")
     @Consumes(MediaType.APPLICATION_JSON)
-    void postBoughtItems(
-            @Auth User user,
-            @PathParam("supermarketPlaceId") @ApiParam(value = "The placeId of the supermarket the items were bought at", required = true) String supermarketPlaceId,
-            @ApiParam(value = "List of BoughtItems", required = true) List<BoughtItem> boughtItems);
+    void postBoughtItems(@Auth User user, @ApiParam(value = "ItemOrder", required = true) ItemOrderWrapper itemOrder);
 
 }
