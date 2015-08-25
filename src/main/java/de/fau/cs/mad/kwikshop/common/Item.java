@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 import java.util.Date;
 
-import de.fau.cs.mad.kwikshop.android.viewmodel.ItemViewModel;
 import de.fau.cs.mad.kwikshop.common.interfaces.DomainObject;
 
 
@@ -19,7 +18,7 @@ import de.fau.cs.mad.kwikshop.common.interfaces.DomainObject;
 @DatabaseTable(tableName = "item")
 public class Item extends ItemViewModel implements DomainObject  {
 
-    public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";/*///*/
+    public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";
     public static final String FOREIGN_RECIPE_FIELD_NAME = "recipe";
 
 
