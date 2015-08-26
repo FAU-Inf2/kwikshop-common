@@ -405,9 +405,12 @@ public class Item implements DomainObject  {
     }
 
     public void setImageItem(String imageItem) {
-        this.imageItem = imageItem;
-    }
 
+            this.imageItem = imageItem;
+    }
+    public void removeImageItem(){
+        this.imageItem = null;
+    }
 
     @JsonProperty
     public int getVersion() {
