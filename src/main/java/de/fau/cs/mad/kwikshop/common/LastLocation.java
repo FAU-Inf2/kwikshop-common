@@ -64,12 +64,6 @@ public class LastLocation implements DomainObject {
     private String name;
 
     //Hibernate
-    @Column(name = "timestamp")
-    //ORMLite
-    @DatabaseField
-    private long timestamp;
-
-    //Hibernate
     @Column(name = "accuracy")
     //ORMLite
     @DatabaseField
@@ -104,15 +98,6 @@ public class LastLocation implements DomainObject {
     public String getAddress() {return address; }
 
     public void setAddress(String address) { this.address = address; }
-
-	@JsonProperty
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
 
     @JsonProperty
     public String getName() {
