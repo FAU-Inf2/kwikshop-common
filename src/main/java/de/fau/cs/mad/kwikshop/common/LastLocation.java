@@ -78,6 +78,9 @@ public class LastLocation implements DomainObject {
     //@Column(name="ownerId")
     private String ownerId;
 
+    @DatabaseField(columnName = "placeId")
+    private String placeId;
+
 
     @JsonProperty
     public double getLatitude() {
@@ -155,5 +158,13 @@ public class LastLocation implements DomainObject {
     @Override
     public int getPredefinedId() {
         return 0; // always return o (there are no predefined locations)
+    }
+
+    public String getPlaceId() {
+        return this.placeId;
+    }
+
+    public void setPlaceId(String value) {
+        this.placeId = value;
     }
 }
