@@ -40,7 +40,7 @@ public class ShoppingList implements DomainListObject {
      */
     //ORMLite
     @DatabaseField(foreign = true, canBeNull = true)
-    private CalendarEventDate eventDate = new CalendarEventDate();
+    private CalendarEventDate eventDate;
 
     /**
      * type: Account.id
