@@ -23,12 +23,20 @@ public class BoughtItem {
     @Column(name="name", unique=true, nullable=false)
     private String name;
 
+    @Transient
+    private String supermarketPlaceId;
+
+    @Transient
+    private String supermarketName;
+
     public BoughtItem() {
 
     }
 
-    public BoughtItem(String name) {
-        setName(name);
+    public BoughtItem(String name, String supermarketPlaceId, String supermarketName) {
+        this.name = name;
+        this.supermarketPlaceId = supermarketPlaceId;
+        this.supermarketName = supermarketName;
     }
 
     @JsonIgnore
@@ -47,6 +55,24 @@ public class BoughtItem {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @JsonProperty
+    public String getSupermarketName() {
+        return supermarketName;
+    }
+
+    public void setSupermarketName(String supermarketName) {
+        this.supermarketName = supermarketName;
+    }
+
+    @JsonProperty
+    public String getSupermarketPlaceId() {
+        return supermarketPlaceId;
+    }
+
+    public void setSupermarketPlaceId(String supermarketPlaceId) {
+        this.supermarketPlaceId = supermarketPlaceId;
     }
 
     @Override
