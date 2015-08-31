@@ -91,7 +91,7 @@ public class ShoppingListServer implements DomainListObjectServer {
     @Column(name = "sharingCode")
     private String sharingCode;
 
-    @Column(name = "predefinedId")
+    @Column(name = "predefinedId", nullable = true)
     private int predefinedId;
 
 
