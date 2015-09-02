@@ -33,6 +33,10 @@ public class BoughtItem {
 
     }
 
+    public BoughtItem(String name) {
+        this.name = name;
+    }
+
     public BoughtItem(String name, String supermarketPlaceId, String supermarketName) {
         this.name = name;
         this.supermarketPlaceId = supermarketPlaceId;
