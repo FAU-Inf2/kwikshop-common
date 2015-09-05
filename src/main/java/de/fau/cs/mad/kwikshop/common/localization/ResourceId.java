@@ -38,7 +38,21 @@ public enum ResourceId {
     Unit_short_Tablespoon(34),
     Unit_Can(35),
     Unit_Teaspoon(36),
-    Unit_short_Teaspoon(37);
+    Unit_short_Teaspoon(37),
+    Unit_Piece_singular(38),
+    Unit_Bag_singular(39),
+    Unit_Bottle_singular(40),
+    Unit_Box_singular(41),
+    Unit_Pack_singular(42),
+    Unit_Dozen_singular(43),
+    Unit_Gram_singular(44),
+    Unit_Kilogram_singular(45),
+    Unit_Millilitre_singular(46),
+    Unit_Litre_singular(47),
+    Unit_Cup_singular(48),
+    Unit_Tablespoon_singular(49),
+    Unit_Can_singular(50),
+    Unit_Teaspoon_singular(51);
 
     private final int id;
 
