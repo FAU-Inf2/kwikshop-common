@@ -70,6 +70,10 @@ public class RecipeServer implements DomainListObjectServer {
     @Column(name = "predefinedId")
     private int predefinedId;
 
+    @Column(name = "leaseId")
+    private int leaseId;
+
+
 
     public RecipeServer(int id) {
         this.id = id;
@@ -160,6 +164,19 @@ public class RecipeServer implements DomainListObjectServer {
     public void setPredefinedId(int value) {
         this.predefinedId = value;
     }
+
+
+    @JsonIgnore
+    public int getLeaseId() {
+        return this.leaseId;
+    }
+
+    @JsonIgnore
+    public void setLeaseId(int value) {
+        this.leaseId = value;
+    }
+
+
 
     @JsonIgnore
     public Collection<Item> getItems() {

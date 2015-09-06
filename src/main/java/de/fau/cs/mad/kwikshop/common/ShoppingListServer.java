@@ -94,6 +94,9 @@ public class ShoppingListServer implements DomainListObjectServer {
     @Column(name = "predefinedId")
     private int predefinedId;
 
+    @Column(name = "leaseId")
+    private int leaseId;
+
 
 
     public ShoppingListServer(int id) {
@@ -210,6 +213,19 @@ public class ShoppingListServer implements DomainListObjectServer {
     public void setPredefinedId(int value) {
         this.predefinedId = value;
     }
+
+
+    @JsonIgnore
+    public int getLeaseId() {
+        return this.leaseId;
+    }
+
+    @JsonIgnore
+    public void setLeaseId(int value) {
+        this.leaseId = value;
+    }
+
+
 
     @Override
     public void setOwnerId(String value) {
