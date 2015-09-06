@@ -19,6 +19,10 @@ import java.util.Date;
                 query = "SELECT l FROM SynchronizationLease l WHERE l.userId = :" + NamedQueryConstants.USER_ID
         ),
         @NamedQuery(
+                name = NamedQueryConstants.SYNCHRONIZATIONLEASE_GET_ALL_FOR_CLIENT,
+                query = "SELECT l FROM SynchronizationLease l WHERE l.clientId = :" + NamedQueryConstants.CLIENT_ID
+        ),
+        @NamedQuery(
                 name = NamedQueryConstants.SYNCHRONIZATIONLEASE_GET_BY_ID,
                 query = "SELECT l FROM SynchronizationLease l WHERE l.id = :" + NamedQueryConstants.SYNCHRONIZATIONLEASE_ID
         ),
@@ -42,6 +46,16 @@ public class SynchronizationLease {
 
     @Column
     private Date expirationTime;
+
+    public SynchronizationLease() {
+
+    }
+
+    public SynchronizationLease(Date expirationTime) {
+
+        this.expirationTime = expirationTime;
+
+    }
 
 
     @JsonProperty

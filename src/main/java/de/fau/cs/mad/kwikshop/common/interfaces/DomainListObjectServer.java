@@ -34,4 +34,8 @@ public interface DomainListObjectServer extends DomainObject {
 
     void setVersion(int value);
 
+    int getLeaseId();
+
+    void setLeaseId(int value);
+
 }

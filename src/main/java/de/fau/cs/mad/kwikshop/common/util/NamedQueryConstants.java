@@ -23,6 +23,8 @@ public class NamedQueryConstants {
 
     public static final String RECIPE_GET_DELETED_LISTS = "Recipe.getDeletedLists";
 
+    public static final String RECIPE_GET_LEASES = "Recipe.getLeases";
+
 
     public static final String UNIT_GET_BY_ID = "Unit.getById";
 
@@ -56,4 +58,6 @@ public class NamedQueryConstants {
     public static final String SYNCHRONIZATIONLEASE_GET_BY_ID_AND_OWNER = "SynchronizationLease.getByIdAndOwner";
 
     public static final String SYNCHRONIZATIONLEASE_ID = "synchronizationLeaseId";
+    public static final String SYNCHRONIZATIONLEASE_GET_ALL_FOR_CLIENT = "SynchronizationLease.getByClientId";
+    public static final String CLIENT_ID = "clientId";
 }

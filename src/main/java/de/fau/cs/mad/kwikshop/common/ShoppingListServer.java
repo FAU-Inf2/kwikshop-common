@@ -215,11 +215,13 @@ public class ShoppingListServer implements DomainListObjectServer {
     }
 
 
+    @Override
     @JsonIgnore
     public int getLeaseId() {
         return this.leaseId;
     }
 
+    @Override
     @JsonIgnore
     public void setLeaseId(int value) {
         this.leaseId = value;
