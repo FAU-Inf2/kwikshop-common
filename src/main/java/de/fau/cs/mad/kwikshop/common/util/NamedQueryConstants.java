@@ -49,4 +49,11 @@ public class NamedQueryConstants {
     public static final String EDGE_FROM_NAME = "edgeFromName";
     public static final String EDGE_TO_NAME = "edgeToName";
 
+    public static final String SYNCHRONIZATIONLEASE_GET_ALL_FOR_USER = "SynchronizationLease.getAllForUser";
+
+    public static final String SYNCHRONIZATIONLEASE_GET_BY_ID = "SynchronizationLease.getById";
+
+    public static final String SYNCHRONIZATIONLEASE_GET_BY_ID_AND_OWNER = "SynchronizationLease.getByIdAndOwner";
+
+    public static final String SYNCHRONIZATIONLEASE_ID = "synchronizationLeaseId";
 }
