@@ -2,6 +2,10 @@ package de.fau.cs.mad.kwikshop.common;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import de.fau.cs.mad.kwikshop.common.serialization.DateDeserializer;
+import de.fau.cs.mad.kwikshop.common.serialization.DateSerializer;
 import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 
 import javax.persistence.*;
@@ -68,10 +72,12 @@ public class SynchronizationLease {
     }
 
     @JsonProperty
+    @JsonSerialize(using = DateSerializer.class)
     public Date getExpirationTime() {
         return expirationTime;
     }
 
+    @JsonDeserialize(using = DateDeserializer.class)
     public void setExpirationTime(Date value) {
         this.expirationTime = value;
     }
