@@ -19,9 +19,8 @@ public interface LeaseResource {
      */
     @PUT
     @UnitOfWork
-    @Path("/new/{clientId}")
     @Produces(MediaType.APPLICATION_JSON)
-    SynchronizationLease getSynchronizationLease(@Auth User user, @PathParam("clientId") String clientId);
+    SynchronizationLease getSynchronizationLease(@Auth User user, @HeaderParam(Constants.KWIKSHOP_CLIENT_ID) String clientId);
 
     /**
      * Extends the specified lease
@@ -32,9 +31,9 @@ public interface LeaseResource {
      */
     @POST
     @UnitOfWork
-    @Path("{leaseId}/{clientId}")
+    @Path("{leaseId}")
     @Produces(MediaType.APPLICATION_JSON)
-    SynchronizationLease extendSynchronizationLease(@Auth User user, @PathParam("leaseId") int leaseId, @PathParam("clientId") String clientId);
+    SynchronizationLease extendSynchronizationLease(@Auth User user, @PathParam("leaseId") int leaseId, @HeaderParam(Constants.KWIKSHOP_CLIENT_ID) String clientId);
 
     /**
      * Removes the specified lease so the locked resources can be used by other clients
@@ -44,7 +43,7 @@ public interface LeaseResource {
      */
     @DELETE
     @UnitOfWork
-    @Path("{leaseId}/{clientId}")
-    void removeSynchronizationLease(@Auth User user, @PathParam("leaseId") int leaseId, @PathParam("clientId") String clientId);
+    @Path("{leaseId}")
+    void removeSynchronizationLease(@Auth User user, @PathParam("leaseId") int leaseId, @HeaderParam(Constants.KWIKSHOP_CLIENT_ID) String clientId);
 
 }
