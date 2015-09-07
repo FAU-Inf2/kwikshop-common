@@ -58,8 +58,13 @@ public class Unit implements DomainObject{
   @DatabaseField(dataType = DataType.ENUM_STRING)
   private ResourceId resourceId;
 
-
   @Column
+  @Enumerated(EnumType.STRING)
+  @DatabaseField(dataType = DataType.ENUM_STRING)
+  private ResourceId singularResourceId;
+
+
+    @Column
   @Enumerated(EnumType.STRING)
   @DatabaseField(dataType = DataType.ENUM_STRING)
   private ResourceId shortNameResourceId;
@@ -80,15 +85,16 @@ public class Unit implements DomainObject{
   }
 
 
-  public Unit(String name, ResourceId resourceId, PredefinedId predefinedId) {
-    this(name, resourceId, null, predefinedId);
+  public Unit(String name, ResourceId resourceId, PredefinedId predefinedId, ResourceId singularResourceId) {
+    this(name, resourceId, null, predefinedId, singularResourceId);
   }
 
-  public Unit(String name, ResourceId resourceId, ResourceId shortNameResourceId, PredefinedId predefinedId) {
+  public Unit(String name, ResourceId resourceId, ResourceId shortNameResourceId, PredefinedId predefinedId, ResourceId singularResourceId) {
     setName(name);
     setResourceId(resourceId);
     setShortNameResourceId(shortNameResourceId);
     setPredefinedId(predefinedId.toInt());
+    setSingularResourceId(singularResourceId);
   }
 
   @JsonIgnore
@@ -143,11 +149,22 @@ public class Unit implements DomainObject{
     this.resourceId = value;
   }
 
+    @JsonDeserialize(using = ResourceIdDeserializer.class)
+    public void setSingularResourceId(ResourceId value) {
+        this.singularResourceId = value;
+    }
+
   @JsonProperty
   @JsonSerialize(using = ResourceIdSerializer.class)
   public ResourceId getShortNameResourceId() {
     return this.shortNameResourceId;
   }
+
+  @JsonProperty
+  @JsonSerialize(using = ResourceIdSerializer.class)
+  public ResourceId getSingularResourceId() {
+        return this.singularResourceId;
+    }
 
   @JsonDeserialize(using = ResourceIdDeserializer.class)
   public void setShortNameResourceId(ResourceId value) {

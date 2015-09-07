@@ -39,7 +39,7 @@ public enum ResourceId {
     Unit_Can(35),
     Unit_Teaspoon(36),
     Unit_short_Teaspoon(37),
-    Unit_Piece_singular(38),
+    Unit_Piece_name(38),
     Unit_Bag_singular(39),
     Unit_Bottle_singular(40),
     Unit_Box_singular(41),
