@@ -34,8 +34,9 @@ import java.util.Date;
 })
 public class SynchronizationLease {
 
-    @Column
     @Id
+    @GeneratedValue
+    @Column(name="id")
     private int id;
 
     @Column
