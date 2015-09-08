@@ -7,9 +7,13 @@ import io.dropwizard.hibernate.UnitOfWork;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("lease")
 public interface LeaseResource {
+
+
+    Response.Status LEASE_DENIED_STATUS_CODE = Response.Status.FORBIDDEN;
 
     /**
      * Requests a new synchronization
