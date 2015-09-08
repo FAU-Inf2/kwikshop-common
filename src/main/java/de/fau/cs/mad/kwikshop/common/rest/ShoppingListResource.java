@@ -13,6 +13,7 @@ import de.fau.cs.mad.kwikshop.common.sorting.BoughtItem;
 import de.fau.cs.mad.kwikshop.common.rest.responses.SharingCode;
 import de.fau.cs.mad.kwikshop.common.rest.responses.SharingResponse;
 import de.fau.cs.mad.kwikshop.common.sorting.ItemOrderWrapper;
+import de.fau.cs.mad.kwikshop.common.sorting.SortingRequest;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 
@@ -148,12 +149,19 @@ public interface ShoppingListResource {
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Gets the items that were deleted from the list")
     List<DeletionInfo> getDeletedListItems(@Auth User user,
-                                      @PathParam("listId") @ApiParam(value = "The id of the list to get deleted items for", required = true) int listId);
+                                           @PathParam("listId") @ApiParam(value = "The id of the list to get deleted items for", required = true) int listId);
 
     @POST
     @UnitOfWork
     @Path("/boughtItems")
     @Consumes(MediaType.APPLICATION_JSON)
     void postBoughtItems(@Auth User user, @ApiParam(value = "ItemOrder", required = true) ItemOrderWrapper itemOrder);
+
+    @POST
+    @UnitOfWork
+    @Path("{listId}/sort")
+    @Produces(MediaType.APPLICATION_JSON)
+    void sort(@Auth User user, @PathParam("listId") int listId,
+              @ApiParam(value = "SortingRequest", required = true) SortingRequest sortingRequest);
 
 }
