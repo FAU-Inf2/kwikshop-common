@@ -34,6 +34,8 @@ public enum PredefinedId {
     Unit_Can(29),
     Unit_Teaspoon(30),
 
+    Group_Can(31),
+
     ShoppingList_MyFirstShoppingList(100),
     ShoppingList_MyFirstShoppingList_Item1(100 + 1),
     ShoppingList_MyFirstShoppingList_Item2(100 + 2),

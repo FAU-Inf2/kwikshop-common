@@ -52,7 +52,8 @@ public enum ResourceId {
     Unit_Cup_singular(48),
     Unit_Tablespoon_singular(49),
     Unit_Can_singular(50),
-    Unit_Teaspoon_singular(51);
+    Unit_Teaspoon_singular(51),
+    Group_Can(52);
 
     private final int id;
 
