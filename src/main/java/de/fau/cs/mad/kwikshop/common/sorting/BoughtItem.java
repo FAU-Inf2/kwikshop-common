@@ -29,6 +29,9 @@ public class BoughtItem {
     @Transient
     private String supermarketName;
 
+    @Transient
+    private int itemId;
+
     public BoughtItem() {
 
     }
@@ -77,6 +80,14 @@ public class BoughtItem {
 
     public void setSupermarketPlaceId(String supermarketPlaceId) {
         this.supermarketPlaceId = supermarketPlaceId;
+    }
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
     @Override
