@@ -26,4 +26,18 @@ public class StringHelper {
 
         return word;
     }
+
+    //returns the String until the first space or the end of the string
+    public static String getFirstWord(String sentence){
+        String word = "";
+        sentence = sentence.trim();
+        for(int i = 0; i < sentence.length(); i++){
+            if(sentence.charAt(i) == ' '){
+                return word;
+            }
+            word = word + sentence.charAt(i);
+        }
+        return word;
+    }
+
 }
