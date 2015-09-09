@@ -2,6 +2,7 @@ package de.fau.cs.mad.kwikshop.common.rest;
 
 import de.fau.cs.mad.kwikshop.common.SynchronizationLease;
 import de.fau.cs.mad.kwikshop.common.User;
+import de.fau.cs.mad.kwikshop.common.rest.annotations.RequiresClientId;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 
@@ -9,6 +10,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@RequiresClientId
 @Path("lease")
 public interface LeaseResource {
 

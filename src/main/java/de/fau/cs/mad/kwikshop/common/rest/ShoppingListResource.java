@@ -9,7 +9,8 @@ import de.fau.cs.mad.kwikshop.common.DeletionInfo;
 import de.fau.cs.mad.kwikshop.common.Item;
 import de.fau.cs.mad.kwikshop.common.ShoppingListServer;
 import de.fau.cs.mad.kwikshop.common.User;
-import de.fau.cs.mad.kwikshop.common.sorting.BoughtItem;
+import de.fau.cs.mad.kwikshop.common.rest.annotations.RequiresClientId;
+import de.fau.cs.mad.kwikshop.common.rest.annotations.RequiresLease;
 import de.fau.cs.mad.kwikshop.common.rest.responses.SharingCode;
 import de.fau.cs.mad.kwikshop.common.rest.responses.SharingResponse;
 import de.fau.cs.mad.kwikshop.common.sorting.ItemOrderWrapper;
@@ -29,6 +30,7 @@ import java.util.List;
  */
 @Path("shoppinglist")
 @Api(value = "shoppinglist", description = "Storage and retrieval of shopping lists")
+@RequiresClientId
 public interface ShoppingListResource {
 
 
@@ -36,16 +38,19 @@ public interface ShoppingListResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
+    @RequiresLease
     List<ShoppingListServer> getList(@Auth User user);
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{listId}")
     @UnitOfWork
+    @RequiresLease
     ShoppingListServer getList(@Auth User user, @PathParam("listId") int listId);
 
     @PUT
     @UnitOfWork
+    @RequiresLease
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     ShoppingListServer createList(@Auth User user, ShoppingListServer list);
@@ -53,6 +58,7 @@ public interface ShoppingListResource {
     @POST
     @UnitOfWork
     @Path("{listId}")
+    @RequiresLease
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     ShoppingListServer updateList(@Auth User user, @PathParam("listId") int listId, ShoppingListServer list);
@@ -60,12 +66,14 @@ public interface ShoppingListResource {
     @DELETE
     @UnitOfWork
     @Path("{listId}")
+    @RequiresLease
     void deleteList(@Auth User user, @PathParam("listId") int listId);
 
     @GET
     @UnitOfWork
     @Path("/deleted")
     @Produces(MediaType.APPLICATION_JSON)
+    @RequiresLease
     @ApiOperation(value = "Gets the Ids of the user's shopping lists that were deleted")
     List<DeletionInfo> getDeletedLists(@Auth User user);
 
@@ -73,6 +81,7 @@ public interface ShoppingListResource {
     @UnitOfWork
     @Path("{listId}/{itemId}")
     @Produces(MediaType.APPLICATION_JSON)
+    @RequiresLease
     Item getListItem(@Auth User user, @PathParam("listId") int listId, @PathParam("itemId") int itemId);
 
     @GET
@@ -90,12 +99,14 @@ public interface ShoppingListResource {
     @GET
     @UnitOfWork
     @Path("/sharedLists")
+    @RequiresLease
     @Produces(MediaType.APPLICATION_JSON)
     List<ShoppingListServer> getSharedLists(@Auth User user);
 
     @PUT
     @UnitOfWork
     @Path("{listId}/newItem")
+    @RequiresLease
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
@@ -109,6 +120,7 @@ public interface ShoppingListResource {
     @POST
     @UnitOfWork
     @Path("{listId}/{itemId}")
+    @RequiresLease
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
@@ -124,6 +136,7 @@ public interface ShoppingListResource {
     @DELETE
     @UnitOfWork
     @Path("{listId}/{itemId}")
+    @RequiresLease
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(
@@ -139,6 +152,7 @@ public interface ShoppingListResource {
     @GET
     @UnitOfWork
     @Path("{listId}/items")
+    @RequiresLease
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     List<Item> getListItems(@Auth User user, @PathParam("listId") int listId);
@@ -146,6 +160,7 @@ public interface ShoppingListResource {
     @GET
     @UnitOfWork
     @Path("{listId}/items/deleted")
+    @RequiresLease
     @Produces(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Gets the items that were deleted from the list")
     List<DeletionInfo> getDeletedListItems(@Auth User user,

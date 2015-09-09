@@ -10,6 +10,8 @@ import de.fau.cs.mad.kwikshop.common.Item;
 import de.fau.cs.mad.kwikshop.common.RecipeServer;
 import de.fau.cs.mad.kwikshop.common.User;
 
+import de.fau.cs.mad.kwikshop.common.rest.annotations.RequiresClientId;
+import de.fau.cs.mad.kwikshop.common.rest.annotations.RequiresLease;
 import io.dropwizard.auth.Auth;
 import io.dropwizard.hibernate.UnitOfWork;
 
@@ -24,6 +26,8 @@ import java.util.List;
      (this affects the android client that shares sources with the sever)
  */
 @Path("recipe")
+@RequiresClientId
+@RequiresLease
 @Api(value = "recipe", description = "Storage and retrieval of recipes")
 public interface RecipeResource {
 
