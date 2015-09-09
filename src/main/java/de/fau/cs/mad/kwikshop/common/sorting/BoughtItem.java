@@ -82,6 +82,7 @@ public class BoughtItem {
         this.supermarketPlaceId = supermarketPlaceId;
     }
 
+    @JsonIgnore
     public int getItemId() {
         return itemId;
     }
@@ -99,7 +100,6 @@ public class BoughtItem {
 
         BoughtItem boughtItem = (BoughtItem) obj;
         return boughtItem.getName().equals(this.getName());
-
     }
 
     @Override
