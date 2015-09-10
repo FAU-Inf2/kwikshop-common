@@ -52,13 +52,6 @@ public class ShoppingList implements DomainListObject {
     @ForeignCollectionField(eager = true)
     private ForeignCollection<Item> items;
 
-    /**
-     * last shopping location
-     */
-    //ORMLite
-    @DatabaseField(foreign = true, canBeNull = true)
-    private LastLocation location;
-
     //ORMLite
     @DatabaseField (canBeNull = true)
     private Date lastModifiedDate;
@@ -109,9 +102,6 @@ public class ShoppingList implements DomainListObject {
         this.name = name;
     }
 
-    public LastLocation getLocation(){ return this.location;}
-
-    public void setLocation(LastLocation location){this.location = location;}
 
     @Override
     public Date getLastModifiedDate() {

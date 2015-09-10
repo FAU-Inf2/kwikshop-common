@@ -125,7 +125,6 @@ public abstract class EqualityComparer {
 
         return stringEquals(shoppingList1.getName(), shoppingList2.getName()) &&
                 shoppingList1.getSortTypeInt() == shoppingList2.getSortTypeInt() &&
-                locationEquals(shoppingList1.getLocation(), shoppingList2.getLocation()) &&
                 dateEquals(shoppingList1.getLastModifiedDate(), shoppingList2.getLastModifiedDate());
     }
 
