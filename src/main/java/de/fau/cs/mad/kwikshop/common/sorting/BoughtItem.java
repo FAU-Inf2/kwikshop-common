@@ -2,11 +2,16 @@ package de.fau.cs.mad.kwikshop.common.sorting;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+import java.util.Date;
 
 import javax.persistence.*;
 
 import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
 
+//Hibernate annotations (server side)
 @Entity
 @NamedQueries({
         @NamedQuery(
@@ -14,23 +19,56 @@ import de.fau.cs.mad.kwikshop.common.util.NamedQueryConstants;
                 query = "SELECT i FROM BoughtItem i WHERE i.name = :" + NamedQueryConstants.BOUGHTITEM_NAME
         )
 })
-public class BoughtItem {
+//ORMLite annotations (android client)
+@DatabaseTable(tableName = "boughtItem")
+public class BoughtItem implements Comparable<BoughtItem> {
 
+    //Hibernate
     @Id
     @GeneratedValue
+    //ORMLite
+    @DatabaseField(generatedId = true)
     private int id;
 
+    //Hibernate
     @Column(name="name", unique=true, nullable=false)
+    //ORMLite
+    @DatabaseField
     private String name;
 
+    //Hibernate
     @Transient
+    //ORMLite
+    @DatabaseField
     private String supermarketPlaceId;
 
+    //Hibernate
     @Transient
+    //ORMLite
+    @DatabaseField
     private String supermarketName;
 
+    //Hibernate
     @Transient
     private int itemId;
+
+    //Hibernate
+    @Transient
+    //ORMLite
+    @DatabaseField
+    private int shoppingListId;
+
+    //Hibernate
+    @Transient
+    //ORMLite
+    @DatabaseField
+    private Date date;
+
+    //Hibernate
+    @Transient
+    //ORMLite
+    @DatabaseField
+    private boolean sync = false;
 
     public BoughtItem() {
 
@@ -91,6 +129,33 @@ public class BoughtItem {
         this.itemId = itemId;
     }
 
+    @JsonIgnore
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @JsonIgnore
+    public int getShoppingListId() {
+        return shoppingListId;
+    }
+
+    public void setShoppingListId(int shoppingListId) {
+        this.shoppingListId = shoppingListId;
+    }
+
+    @JsonIgnore
+    public boolean isSync() {
+        return sync;
+    }
+
+    public void setSync(boolean sync) {
+        this.sync = sync;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(obj == this)
@@ -105,5 +170,10 @@ public class BoughtItem {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    @Override
+    public int compareTo(BoughtItem boughtItem) {
+        return this.getDate().compareTo(boughtItem.getDate());
     }
 }
