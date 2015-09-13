@@ -203,6 +203,7 @@ public class ShoppingList implements DomainListObject {
         return ownerId;
     }
 
+    @Override
     public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
     }

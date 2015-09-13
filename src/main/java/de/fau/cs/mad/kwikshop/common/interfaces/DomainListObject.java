@@ -31,4 +31,6 @@ public interface DomainListObject extends DomainObject {
     int getServerId();
 
     void setServerId(int value);
+
+    void setOwnerId(String value);
 }

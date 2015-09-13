@@ -132,6 +132,11 @@ public class Recipe implements DomainListObject {
         this.predefinedId = value;
     }
 
+    @Override
+    public void setOwnerId(String value) {
+        //no ownerId in Recipe for now => do nothing
+    }
+
     public Collection<Item> getItems() {
 
         if(this.items == null) {
