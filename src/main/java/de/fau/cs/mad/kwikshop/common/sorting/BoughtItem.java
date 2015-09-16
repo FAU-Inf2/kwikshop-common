@@ -50,6 +50,8 @@ public class BoughtItem implements Comparable<BoughtItem> {
 
     //Hibernate
     @Transient
+    //ORMLite
+    @DatabaseField
     private int itemId;
 
     //Hibernate
