@@ -235,6 +235,8 @@ public class ShoppingListServer implements DomainListObjectServer {
     }
 
     public void addItem(Item item) {
+        if(items == null)
+            items = new ArrayList<Item>();
         this.items.add(item);
     }
 
