@@ -16,7 +16,7 @@ import de.fau.cs.mad.kwikshop.common.interfaces.DomainObject;
 @Entity(name = "Item")
 //ORMLite annotations (android client)
 @DatabaseTable(tableName = "item")
-public class Item implements DomainObject  {
+public class Item implements DomainObject, Comparable {
 
     public static final String FOREIGN_SHOPPINGLIST_FIELD_NAME = "shoppingList";/*///*/
     public static final String FOREIGN_RECIPE_FIELD_NAME = "recipe";
@@ -472,4 +472,11 @@ public class Item implements DomainObject  {
         return id;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        if(!(o instanceof Item))
+            return 0;
+        Item other = (Item) o;
+        return (order - other.getOrder());
+    }
 }
