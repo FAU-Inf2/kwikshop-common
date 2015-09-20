@@ -198,6 +198,18 @@ public class ShoppingListServer implements DomainListObjectServer {
         return null;
     }
 
+    @JsonIgnore
+    public List<Item> getAllItems(String name) {
+        List<Item> itemList = new ArrayList<Item>();
+        for (Item item : items) {
+            if (item.getName().equals(name)) {
+                itemList.add(item);
+            }
+        }
+        //TODO: returning null is a bad idea
+        return itemList;
+    }
+
     @Override
     @JsonProperty
     public String getOwnerId() {
