@@ -405,11 +405,7 @@ public class Item implements DomainObject, Comparable<Item> {
     }
 
     public void setImageItem(String imageItem) {
-
-            this.imageItem = imageItem;
-    }
-    public void removeImageItem(){
-        this.imageItem = null;
+        this.imageItem = imageItem;
     }
 
     @JsonProperty
