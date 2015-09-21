@@ -72,6 +72,11 @@ public class BoughtItem implements Comparable<BoughtItem> {
     @DatabaseField
     private boolean sync = false;
 
+    //Hibernate
+    @Transient
+    //ORMLite does not need this field
+    private boolean serverInternalItem = false;
+
     public BoughtItem() {
 
     }
@@ -158,6 +163,15 @@ public class BoughtItem implements Comparable<BoughtItem> {
         this.sync = sync;
     }
 
+    @JsonIgnore
+    public boolean isServerInternalItem() {
+        return serverInternalItem;
+    }
+
+    public void setServerInternalItem(boolean serverInternalItem) {
+        this.serverInternalItem = serverInternalItem;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(obj == this)
@@ -166,6 +180,9 @@ public class BoughtItem implements Comparable<BoughtItem> {
             return false;
 
         BoughtItem boughtItem = (BoughtItem) obj;
+        if (this.isServerInternalItem() != boughtItem.isServerInternalItem()) {
+            return false;
+        }
         return boughtItem.getName().equals(this.getName());
     }
 
