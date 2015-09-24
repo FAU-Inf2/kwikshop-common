@@ -73,8 +73,9 @@ public class BoughtItem implements Comparable<BoughtItem> {
     private boolean sync = false;
 
     //Hibernate
-    @Transient
-    //ORMLite does not need this field
+    @Column(nullable = false)
+    //ORMLite
+    @DatabaseField
     private boolean serverInternalItem = false;
 
     public BoughtItem() {
@@ -136,7 +137,7 @@ public class BoughtItem implements Comparable<BoughtItem> {
         this.itemId = itemId;
     }
 
-    @JsonIgnore
+    @JsonProperty
     public Date getDate() {
         return date;
     }
