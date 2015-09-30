@@ -95,9 +95,16 @@ public enum PredefinedId {
     Recipe_Spaghetti_Bolognese_Item8(600 + 8),
     Recipe_Spaghetti_Bolognese_Item9(600 + 9),
     Recipe_Spaghetti_Bolognese_Item10(600 + 10),
-    Recipe_Spaghetti_Bolognese_Item11(600 + 11);
+    Recipe_Spaghetti_Bolognese_Item11(600 + 11),
 
-
+    Recipe_CherryCake(700),
+    Recipe_CherryCake_Item1(700 + 1),
+    Recipe_CherryCake_Item2(700 + 2),
+    Recipe_CherryCake_Item3(700 + 3),
+    Recipe_CherryCake_Item4(700 + 4),
+    Recipe_CherryCake_Item5(700 + 5),
+    Recipe_CherryCake_Item6(700 + 6),
+    Recipe_CherryCake_Item7(700 + 7);
 
     private final int id;
 
