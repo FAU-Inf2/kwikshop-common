@@ -114,7 +114,15 @@ public enum PredefinedId {
     Recipe_PineappleCake(900),
     Recipe_PineappleCake_Item1(900 + 1),
     Recipe_PineappleCake_Item2(900 + 2),
-    Recipe_PineappleCake_Item3(900 + 3);
+    Recipe_PineappleCake_Item3(900 + 3),
+
+    Recipe_Apple_Pie(1000),
+    Recipe_Apple_Pie_Item1(1000 + 1),
+    Recipe_Apple_Pie_Item2(1000 + 2),
+    Recipe_Apple_Pie_Item3(1000 + 3),
+    Recipe_Apple_Pie_Item4(1000 + 4),
+    Recipe_Apple_Pie_Item5(1000 + 5),
+    Recipe_Apple_Pie_Item6(1000 + 6);
 
     private final int id;
 
