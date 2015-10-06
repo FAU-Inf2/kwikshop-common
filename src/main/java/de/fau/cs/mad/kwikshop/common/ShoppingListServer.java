@@ -273,10 +273,7 @@ public class ShoppingListServer implements DomainListObjectServer {
         return sharingCode;
     }
 
-    @ManyToMany(
-            targetEntity=User.class,
-            cascade={CascadeType.ALL}
-    )
+    @ManyToMany(targetEntity=User.class)
     private Set<User> sharedWith = new HashSet<User>();
 
     @JsonIgnore
